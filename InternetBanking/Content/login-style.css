@@ -1,8 +1,11 @@
 ﻿body {
 	margin:0;
 	padding:0;
-	background:url(Imagery/program_business-administration.jpg);
+	background-image:url(Imagery/program_business-administration.jpg);
 	background-size:cover;
+	height:700px;
+	background-position:center;
+	background-repeat:no-repeat;
 }
 
 .jumbotron {
