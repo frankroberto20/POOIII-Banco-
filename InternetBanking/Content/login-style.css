@@ -1,0 +1,26 @@
+﻿body {
+	margin:0;
+	padding:0;
+	background:url(Imagery/program_business-administration.jpg);
+	background-size:cover;
+}
+
+.jumbotron {
+	padding: 2rem 1rem;
+	margin-bottom: 2rem;
+	background-color: #e9ecef;
+	border-radius: 0.3rem;
+}
+
+.loginbox {
+	padding: 2rem 1rem;
+	background-color: #e9ecef;
+	border-radius: 0.3rem;
+	width: 320px;
+	height: 420px;
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	transform: translate(-50%,-50%);
+	box-sizing: border-box;
+}
