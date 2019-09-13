@@ -21,7 +21,7 @@ namespace InternetBanking
                 Session["IsLoggedIn"] = true;
             }
 
-            Response.Redirect("~/Default.aspx");
+            Response.Redirect("~/Home.aspx");
         }
     }
 }
