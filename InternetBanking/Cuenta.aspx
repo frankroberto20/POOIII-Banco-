@@ -7,16 +7,16 @@
 	</header>
 	<div id="CuentaCards" style="padding-top:60px; display:table; width:100%">
 		<div style="display:table-row">
-			<div style="display:table-cell; width:auto">
-				<div class="card card border-primary mb-3" style="max-width: 50%;">
+			<div style="display:table-cell; width:50%; padding-left:10px; padding-right:10px">
+				<div class="card card border-primary mb-3" style="max-width: 30rem;">
 					<div class="card-header">Balance</div>
 					<div class="card-body">
 						<asp:Label runat="server" ID="lblBalance"  CssClass="card-title"></asp:Label>
 					</div>
 				</div>
 			</div>
-			<div style="display:table-cell; width:auto">
-				<div class="card card border-primary mb-3" style="max-width: 50%;">
+			<div style="display:table-cell; width:50%; padding-left:10px; padding-right:10px">
+				<div class="card card border-primary mb-3" style="max-width: 30rem;">
 					<div class="card-header">Ultima Transaccion</div>
 					<div class="card-body">
 						<asp:Label runat="server" ID="lblUltimaTransaccion"  CssClass="card-title"></asp:Label>
@@ -25,7 +25,7 @@
 			</div>
 		</div>
 	</div>
-	<div>
-		<asp:GridView ID="gridMovimientos" runat="server"></asp:GridView>
+	<div id="Movimientos" style="padding-top:40px">
+		
 	</div>
 </asp:Content>

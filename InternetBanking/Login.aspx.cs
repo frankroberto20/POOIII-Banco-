@@ -11,12 +11,17 @@ namespace InternetBanking
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            Session["IsLoggedIn"] = false;
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Default");
+            if (Login1.UserName.Equals("1"))
+            {
+                Session["IsLoggedIn"] = true;
+            }
+
+            Response.Redirect("~/Default.aspx");
         }
     }
 }

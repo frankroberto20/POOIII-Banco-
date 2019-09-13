@@ -11,7 +11,10 @@ namespace InternetBanking
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Boolean.Parse(Session["IsLoggedIn"].ToString()) == false)
+            {
+                Response.Redirect("~/Login.aspx");
+            }
         }
     }
 }

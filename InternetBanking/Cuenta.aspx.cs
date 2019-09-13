@@ -12,6 +12,7 @@ namespace InternetBanking
         protected void Page_Load(object sender, EventArgs e)
         {
             lblBalance.Text = "RD$1920.60";
+            lblUltimaTransaccion.Text = "-RD$300";
         }
     }
 }
