@@ -11,5 +11,41 @@ namespace InternetBanking {
     
     
     public partial class Transferencias {
+        
+        /// <summary>
+        /// sltCuentaOrigen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect sltCuentaOrigen;
+        
+        /// <summary>
+        /// balanceCuentaOrigen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label balanceCuentaOrigen;
+        
+        /// <summary>
+        /// txtCuentaDestino control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCuentaDestino;
+        
+        /// <summary>
+        /// txtMonto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMonto;
     }
 }
