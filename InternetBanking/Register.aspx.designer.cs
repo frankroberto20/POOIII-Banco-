@@ -157,85 +157,112 @@ namespace InternetBanking {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator ConfirmPasswordRequired;
         
         /// <summary>
-        /// EmailLabel control.
+        /// TelefonoLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label EmailLabel;
+        protected global::System.Web.UI.WebControls.Label TelefonoLabel;
         
         /// <summary>
-        /// Email control.
+        /// Telefono control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Email;
+        protected global::System.Web.UI.WebControls.TextBox Telefono;
         
         /// <summary>
-        /// EmailRequired control.
+        /// TelefonoRequired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator EmailRequired;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator TelefonoRequired;
         
         /// <summary>
-        /// QuestionLabel control.
+        /// IDLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label QuestionLabel;
+        protected global::System.Web.UI.WebControls.Label IDLabel;
         
         /// <summary>
-        /// Question control.
+        /// ID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Question;
+        protected global::System.Web.UI.WebControls.TextBox ID;
         
         /// <summary>
-        /// QuestionRequired control.
+        /// IDRequired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator QuestionRequired;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator IDRequired;
         
         /// <summary>
-        /// AnswerLabel control.
+        /// SexLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label AnswerLabel;
+        protected global::System.Web.UI.WebControls.Label SexLabel;
         
         /// <summary>
-        /// Answer control.
+        /// Sex control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Answer;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect Sex;
         
         /// <summary>
-        /// AnswerRequired control.
+        /// SexRequired control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator AnswerRequired;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator SexRequired;
+        
+        /// <summary>
+        /// EdadLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label EdadLabel;
+        
+        /// <summary>
+        /// Edad control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Edad;
+        
+        /// <summary>
+        /// EdadRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator EdadRequired;
         
         /// <summary>
         /// PasswordCompare control.

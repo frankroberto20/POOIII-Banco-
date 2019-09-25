@@ -4,6 +4,7 @@
 		<webopt:bundlereference runat="server" path="~/Content/css" />
 		<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 		<link rel="stylesheet" type="text/css" href="Content/bootstrap-default.css"/>
+		<link rel="stylesheet" type="text/css" href="Content/gridview-style.css"/>
 	</header>
 	<div id="CuentaCards" style="padding-top:60px; display:table; width:100%">
 		<div style="display:table-row">
@@ -26,6 +27,8 @@
 		</div>
 	</div>
 	<div id="Movimientos" style="padding-top:40px">
-		
+		<asp:GridView ID="grdMovimientos" runat="server" AutoGenerateColumns="true" CssClass="table" GridLines="None">
+			<HeaderStyle CssClass="table-primary"/>
+		</asp:GridView>
 	</div>
 </asp:Content>

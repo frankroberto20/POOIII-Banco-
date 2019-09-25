@@ -33,32 +33,9 @@
     </div>
       -->
 
-
-
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbCuentasConnectionString %>" SelectCommand="SELECT * FROM [tblCuentaInfo]"></asp:SqlDataSource>
     
-    <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Width="1150px" Height="175px" AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="None">
-
-    <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-        <AlternatingRowStyle BackColor="White" />
-        <Columns>
-            <asp:CommandField ShowSelectButton="True" />
-        </Columns>
-        <EditRowStyle BackColor="#2461BF" />
-    <FooterStyle Width="10%" BackColor="#507CD1" />
-
-    <HeaderStyle Width="10%" BackColor="#507CD1"/>
-    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" 
-        Height="12px" VerticalAlign="Bottom" Width="12px" Wrap="False" />
-    <RowStyle Width="10%" BackColor="#EFF3FB" />
-    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-    <SortedAscendingCellStyle BackColor="#F5F7FB" />
-    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-    <SortedDescendingCellStyle BackColor="#E9EBEF" />
-    <SortedDescendingHeaderStyle BackColor="#4870BE" />
-
+    <asp:GridView ID="grdCuentas" runat="server" CssClass="table" GridLines="None">
+		<HeaderStyle CssClass="table-primary" />
     </asp:GridView>
 
 

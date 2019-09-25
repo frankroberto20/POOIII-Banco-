@@ -15,7 +15,7 @@
 	<asp:Login ID="Login1" runat="server">
 	<LayoutTemplate>
 	<div class="loginbox">
-		<h1 align="center" style="padding-bottom:10px;"><%Session["Name Test"].ToString(); %></h1>
+		<h1 align="center" style="padding-bottom:10px;">Login</h1>
     <div class="form-group">
       <label for="UserName">User Name</label>
       <asp:TextBox id="UserName" runat="server" type="username" class="form-control" placeholder="Enter User Name" />

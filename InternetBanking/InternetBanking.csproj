@@ -144,7 +144,6 @@
     <Content Include="Content\login-style.css" />
     <Content Include="Content\register-style.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="dbCuentas.mdf" />
     <Content Include="Home.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

@@ -48,37 +48,47 @@
 								</tr>
 								<tr class="form-group">
 									<td>
-										<asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password">Password:</asp:Label>
+										<asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password">Contrasena:</asp:Label>
 										<asp:TextBox ID="Password" runat="server" TextMode="Password" CssClass="form-control" style="max-width:100%"></asp:TextBox>
 										<asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="Password" ErrorMessage="Password is required." ToolTip="Password is required." ValidationGroup="frmCreateUser" CssClass="text-danger small">*</asp:RequiredFieldValidator>
 									</td>
 								</tr>
 								<tr class="form-group">
 									<td>
-										<asp:Label ID="ConfirmPasswordLabel" runat="server" AssociatedControlID="ConfirmPassword">Confirm Password:</asp:Label>
+										<asp:Label ID="ConfirmPasswordLabel" runat="server" AssociatedControlID="ConfirmPassword">Confirmar Contrasena:</asp:Label>
 										<asp:TextBox ID="ConfirmPassword" runat="server" TextMode="Password" CssClass="form-control" style="max-width:100%"></asp:TextBox>
 										<asp:RequiredFieldValidator ID="ConfirmPasswordRequired" runat="server" ControlToValidate="ConfirmPassword" ErrorMessage="Confirm Password is required." ToolTip="Confirm Password is required." ValidationGroup="frmCreateUser" CssClass="text-danger small">*</asp:RequiredFieldValidator>
 									</td>
 								</tr>
 								<tr class="form-group">
 									<td>
-										<asp:Label ID="EmailLabel" runat="server" AssociatedControlID="Email">E-mail:</asp:Label>
-										<asp:TextBox ID="Email" runat="server" CssClass="form-control" style="max-width:100%"></asp:TextBox>
-										<asp:RequiredFieldValidator ID="EmailRequired" runat="server" ControlToValidate="Email" ErrorMessage="E-mail is required." ToolTip="E-mail is required." ValidationGroup="frmCreateUser" CssClass="text-danger small">*</asp:RequiredFieldValidator>
+										<asp:Label ID="TelefonoLabel" runat="server" AssociatedControlID="ID">Telefono:</asp:Label>
+										<asp:TextBox ID="Telefono" runat="server" CssClass="form-control" style="max-width:100%"></asp:TextBox>
+										<asp:RequiredFieldValidator ID="TelefonoRequired" runat="server" ControlToValidate="Telefono" ErrorMessage="Phone number is required." ToolTip="Phone number is required." ValidationGroup="frmCreateUser" CssClass="text-danger small">*</asp:RequiredFieldValidator>
 									</td>
 								</tr>
 								<tr class="form-group">
 									<td>
-										<asp:Label ID="QuestionLabel" runat="server" AssociatedControlID="Question">Security Question:</asp:Label>
-										<asp:TextBox ID="Question" runat="server" CssClass="form-control" style="max-width:100%"></asp:TextBox>
-										<asp:RequiredFieldValidator ID="QuestionRequired" runat="server" ControlToValidate="Question" ErrorMessage="Security question is required." ToolTip="Security question is required." ValidationGroup="frmCreateUser" CssClass="text-danger small">*</asp:RequiredFieldValidator>
+										<asp:Label ID="IDLabel" runat="server" AssociatedControlID="ID">Cedula:</asp:Label>
+										<asp:TextBox ID="ID" runat="server" CssClass="form-control" style="max-width:100%"></asp:TextBox>
+										<asp:RequiredFieldValidator ID="IDRequired" runat="server" ControlToValidate="ID" ErrorMessage="ID is required." ToolTip="ID is required." ValidationGroup="frmCreateUser" CssClass="text-danger small">*</asp:RequiredFieldValidator>
 									</td>
 								</tr>
 								<tr class="form-group">
 									<td>
-										<asp:Label ID="AnswerLabel" runat="server" AssociatedControlID="Answer">Security Answer:</asp:Label>
-										<asp:TextBox ID="Answer" runat="server" CssClass="form-control" style="max-width:100%"></asp:TextBox>
-										<asp:RequiredFieldValidator ID="AnswerRequired" runat="server" ControlToValidate="Answer" ErrorMessage="Security answer is required." ToolTip="Security answer is required." ValidationGroup="frmCreateUser" CssClass="text-danger small">*</asp:RequiredFieldValidator>
+										<asp:Label ID="SexLabel" runat="server" AssociatedControlID="Sex">Sexo:</asp:Label>
+										<select id="Sex" runat="server" class="form-control" style="max-width:100%">
+											<option>F</option>
+											<option>M</option>
+										</select>
+										<asp:RequiredFieldValidator ID="SexRequired" runat="server" ControlToValidate="Sex" ErrorMessage="Sex is required." ToolTip="Sex is required." ValidationGroup="frmCreateUser" CssClass="text-danger small">*</asp:RequiredFieldValidator>
+									</td>
+								</tr>
+								<tr class="form-group">
+									<td>
+										<asp:Label ID="EdadLabel" runat="server" AssociatedControlID="Edad">Edad:</asp:Label>
+										<asp:TextBox ID="Edad" runat="server" CssClass="form-control" style="max-width:100%"></asp:TextBox>
+										<asp:RequiredFieldValidator ID="EdadRequired" runat="server" ControlToValidate="Edad" ErrorMessage="Edad is required." ToolTip="Edad is required." ValidationGroup="frmCreateUser" CssClass="text-danger small">*</asp:RequiredFieldValidator>
 									</td>
 								</tr>
 								<tr>
