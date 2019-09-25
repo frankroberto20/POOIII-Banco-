@@ -51,10 +51,8 @@
 					<li class="nav-item active"><a runat="server" class="nav-link" href="~/Home">Home</a></li>
 					<li class="nav-item"><a runat="server" class="nav-link" href="~/About">About</a></li>
 					<li class="nav-item"><a runat="server" class="nav-link" href="~/Contact">Contact</a></li>
-					<li class="nav-item"><a runat="server" class="nav-link" href="~/Cuenta">Cuenta</a></li>
 					<li class="nav-item"><a runat="server" class="nav-link" href="~/Transferencias">Transferencias</a></li>
 				</ul>
-				<p><% Session["ID"].ToString(); %></p>
 				</div>
 			</div>
 <!–/.nav-collapse –>
