@@ -18,6 +18,7 @@ namespace InternetBanking
         {
             if (Login1.UserName.Equals("1"))
             {
+                Session["ID"] = Login1.UserName;
                 Session["IsLoggedIn"] = true;
             }
 

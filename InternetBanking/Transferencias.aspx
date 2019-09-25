@@ -37,6 +37,7 @@
 						<asp:TextBox id="txtMonto" runat="server" class="form-control" placeholder="Monto en pesos dominicanos"/>
 					</div>
 				</div>
+				<asp:Button id="btnTransferencia" runat="server" CssClass="btn btn-primary" type="submit" Text="Submit"/>
 			</fieldset>
 		</div>
 	</div>
