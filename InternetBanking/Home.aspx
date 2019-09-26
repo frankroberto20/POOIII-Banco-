@@ -34,31 +34,20 @@
       -->
 
     
-    <asp:GridView ID="grdCuentas" runat="server" CssClass="table table-hover" GridLines="None" OnRowDataBound="grdCuentas_RowDataBound" OnSelectedIndexChanged="grdCuentas_SelectedIndexChanged">
-		<HeaderStyle CssClass="table-primary" />
-		<SelectedRowStyle CssClass="table-active" />
+    <asp:GridView ID="grdCuentas" runat="server" CssClass="table table-hover" GridLines="None" OnRowDataBound="grdCuentas_RowDataBound" OnSelectedIndexChanged="grdCuentas_SelectedIndexChanged" CellPadding="4" ForeColor="#333333">
+		<AlternatingRowStyle BackColor="White" />
+        <EditRowStyle BackColor="#2461BF" />
+        <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+        <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+        <RowStyle BackColor="#EFF3FB" />
+		<SelectedRowStyle CssClass="table-active" BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+        <SortedAscendingCellStyle BackColor="#F5F7FB" />
+        <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+        <SortedDescendingCellStyle BackColor="#E9EBEF" />
+        <SortedDescendingHeaderStyle BackColor="#4870BE" />
     </asp:GridView>
 
-
-    <!-- <div class="card" style="width: 73.8rem;">
-        <table class="card-table talbe">
-          <thead>
-            <tr>
-                <th scope="col" style="width:25rem;">First</th>
-                <th scope="col" style="width:25rem;">Second</th>
-                <th scope="col" style="width:25rem;">Third</th>
-            </tr>
-          </thead>
-            <tbody>
-                <tr>
-                    <td><asp:Label runat="server" ID="lblTipoCuenta"  CssClass="card-title"></asp:Label></td>
-                    <td><asp:Label runat="server" ID="lblID"  CssClass="card-title"></asp:Label></td>
-                    <td><asp:Label runat="server" ID="lblFechaApertura"  CssClass="card-title"></asp:Label></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-        -->
 	<div id="CuentaInfo" runat="server">
 	<div id="CuentaCards" style="padding-top:60px; display:table; width:100%">
 		<div style="display:table-row">

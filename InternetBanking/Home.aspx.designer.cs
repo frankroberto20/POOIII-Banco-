@@ -22,33 +22,6 @@ namespace InternetBanking {
         protected global::System.Web.UI.WebControls.GridView grdCuentas;
         
         /// <summary>
-        /// lblTipoCuenta control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTipoCuenta;
-        
-        /// <summary>
-        /// lblID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblID;
-        
-        /// <summary>
-        /// lblFechaApertura control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFechaApertura;
-        
-        /// <summary>
         /// CuentaInfo control.
         /// </summary>
         /// <remarks>
