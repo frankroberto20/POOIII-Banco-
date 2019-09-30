@@ -4,7 +4,7 @@
 
  <div class="jumbotron">
         <h1>Kelvin Lee Hsu(Nombre completo Cliente)</h1>
-     <h5>Cedula: 1234567890</h5>
+     <h5>Cedula: 123456789</h5>
     </div>
 
 
