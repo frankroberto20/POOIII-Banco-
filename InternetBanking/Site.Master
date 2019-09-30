@@ -56,7 +56,7 @@
 				</ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="nav-item"><a runat="server" class="nav-link" href="~/Login">Logout</a></li>
+                    <li class="nav-item"><a runat="server" class="nav-link" href="~/Login">Log out</a></li>
                 </ul>
 
 				</div>
