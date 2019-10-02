@@ -26,9 +26,6 @@ namespace InternetBanking
 
             grdMovimientos.DataSource = movimientos;
             grdMovimientos.DataBind();
-
-            grdMovimientos.UseAccessibleHeader = true;
-            grdMovimientos.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
     }
 }
