@@ -26,8 +26,12 @@
       <asp:TextBox id="Password" runat="server" type="password" class="form-control" placeholder="Password"/>
 		<asp:RequiredFieldValidator ID="passwordValidator" runat="server" CssClass="text-danger small" ControlToValidate="Password" ErrorMessage="Password is required." ToolTip="Password is required." ValidationGroup="Login1">*Password Required</asp:RequiredFieldValidator>
 		</div>
-	  <asp:Button ID="btnSubmit" runat="server" CssClass="btn btn-primary" CommandName="Login" Text="Log In" ValidationGroup="Login1" OnClick="btnSubmit_Click"/>
-		<a href="Register.aspx" style="padding-left:20px">Register</a>
+	  <div style="margin-left:auto; margin-right:auto; text-align:center">
+			<asp:Button ID="btnSubmit" runat="server" CssClass="btn btn-primary" CommandName="Login" Text="Log In" ValidationGroup="Login1" OnClick="btnSubmit_Click"/>
+		</div>
+		<div style="margin-left:auto; margin-right:auto; text-align:center; padding-top:15px">
+			<a href="Register.aspx">Register</a>
+		</div>
 	</div>
 		</LayoutTemplate>
 		</asp:Login>

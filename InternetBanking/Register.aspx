@@ -78,8 +78,8 @@
 									<td>
 										<asp:Label ID="SexLabel" runat="server" AssociatedControlID="Sex">Sexo:</asp:Label>
 										<select id="Sex" runat="server" class="form-control" style="max-width:100%">
-											<option>F</option>
-											<option>M</option>
+											<option value="F">F</option>
+											<option value="M">M</option>
 										</select>
 										<asp:RequiredFieldValidator ID="SexRequired" runat="server" ControlToValidate="Sex" ErrorMessage="Sex is required." ToolTip="Sex is required." ValidationGroup="frmCreateUser" CssClass="text-danger small">*</asp:RequiredFieldValidator>
 									</td>
@@ -103,7 +103,9 @@
 								</tr>
 							</table>
 				</fieldset>
-			<asp:Button ID="btnSubmit" runat="server" type="submit" CssClass="btn btn-primary" Text="Create User" ValidationGroup="frmCreateUser"/>
+			<div style="margin-left:auto; margin-right:auto; text-align:center">
+				<asp:Button ID="btnSubmit" runat="server" type="submit" CssClass="btn btn-primary" Text="Create User" ValidationGroup="frmCreateUser" OnClick="btnSubmit_Click"/>
+			</div>
 		</form>
 	</div>
 </body>

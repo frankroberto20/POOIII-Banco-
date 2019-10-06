@@ -49,10 +49,10 @@
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active"><a runat="server" class="nav-link" href="~/Home">Home</a></li>
+					<li class="nav-item"><a runat="server" class="nav-link" href="~/Transferencias">Transferencias</a></li>
+					<li class="nav-item"><a runat="server" class="nav-link" href="~/CrearCuenta">Nueva Cuenta</a></li>
 					<li class="nav-item"><a runat="server" class="nav-link" href="~/About">About</a></li>
 					<li class="nav-item"><a runat="server" class="nav-link" href="~/Contact">Contact</a></li>
-					<li class="nav-item"><a runat="server" class="nav-link" href="~/Transferencias">Transferencias</a></li>
-
 				</ul>
 
                 <ul class="nav navbar-nav navbar-right">
