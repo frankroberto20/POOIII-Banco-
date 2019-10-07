@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetBanking", "Internet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caja", "Caja\Caja.csproj", "{5222DB23-E587-4979-BEB9-2B1FE5CDCB04}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreBancario1", "..\CoreBancario1\CoreBancario1\CoreBancario1.csproj", "{EE6E3A20-5A1C-4937-BA65-DA29317BBEBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreWeb", "..\CoreBancario1\CoreWeb\CoreWeb.csproj", "{0760DA7E-735A-4CC8-859F-778BFF6BFC7F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{5222DB23-E587-4979-BEB9-2B1FE5CDCB04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5222DB23-E587-4979-BEB9-2B1FE5CDCB04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5222DB23-E587-4979-BEB9-2B1FE5CDCB04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE6E3A20-5A1C-4937-BA65-DA29317BBEBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE6E3A20-5A1C-4937-BA65-DA29317BBEBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE6E3A20-5A1C-4937-BA65-DA29317BBEBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE6E3A20-5A1C-4937-BA65-DA29317BBEBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0760DA7E-735A-4CC8-859F-778BFF6BFC7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0760DA7E-735A-4CC8-859F-778BFF6BFC7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0760DA7E-735A-4CC8-859F-778BFF6BFC7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0760DA7E-735A-4CC8-859F-778BFF6BFC7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
