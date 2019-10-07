@@ -9,7 +9,6 @@ namespace MainServ
     {
         protected int CuentaOrigen;
         protected int Cedula;
-        protected decimal Monto;
         protected DateTime dateTime;
 
         public RequestHeader()

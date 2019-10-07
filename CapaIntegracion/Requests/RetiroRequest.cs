@@ -7,6 +7,8 @@ namespace MainServ
 {
     public class RetiroRequest: RequestHeader
     {
+        private decimal Monto;
+
         public RetiroResponse Retiro()
         {
             RetiroResponse retiroResponse = new RetiroResponse();

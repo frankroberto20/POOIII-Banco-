@@ -7,6 +7,8 @@ namespace MainServ
 {
     public class DepositoRequest : RequestHeader
     {
+        private decimal Monto;
+
         public DepositoResponse Deposito()
         {
             DepositoResponse depositoResponse = new DepositoResponse();

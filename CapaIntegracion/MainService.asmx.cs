@@ -31,5 +31,10 @@ namespace CapaIntegracion
 
             }
         }
+        [WebMethod]
+        public TransferenciaResponse Transferencia()
+        {
+            
+        }
     }
 }

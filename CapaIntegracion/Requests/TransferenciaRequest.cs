@@ -10,17 +10,19 @@ namespace MainServ
         private string BancoDestino;
         private int CuentaDestino;
         private int CedulaDestino;
+        private decimal Monto;
+
         public TransferenciaRequest(int cuentaOrigen, int cedula, decimal monto, string bancoDestino, int cuentaDestino, int cedulaDestino)
         {
             CuentaOrigen = cuentaOrigen;
             Cedula = cedula;
             Monto = monto;
-            dateTime = DateTime.Now;
-
             BancoDestino = bancoDestino;
             CuentaDestino = cuentaDestino;
             CedulaDestino = cedulaDestino;
-            
+            dateTime = DateTime.Now;
+
+
         }
         public TransferenciaResponse Transferencia()
         {
