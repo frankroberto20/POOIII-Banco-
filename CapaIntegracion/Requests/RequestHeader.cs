@@ -7,9 +7,9 @@ namespace MainServ
 {
     public class RequestHeader
     {
-        private int CuentaOrigen;
-        private int Cedula;
-        private decimal Monto;
+        private int cuentaOrigen;
+        private int cedula;
+        private decimal monto;
         private DateTime dateTime;
 
         public RequestHeader()

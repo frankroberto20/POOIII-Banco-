@@ -73,8 +73,10 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DepositoRequest.cs" />
-    <Compile Include="DepositoResponse.cs" />
+    <Compile Include="Requests\BalanceRequest.cs" />
+    <Compile Include="Requests\DepositoRequest.cs" />
+    <Compile Include="Requests\RetiroRequest.cs" />
+    <Compile Include="Response\DepositoResponse.cs" />
     <Compile Include="MainService.asmx.cs">
       <DependentUpon>MainService.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -93,8 +95,9 @@
     <Compile Include="Pruebas\WebForm1.aspx.designer.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
-    <Compile Include="RequestHeader.cs" />
-    <Compile Include="ResponseHeader.cs" />
+    <Compile Include="Requests\RequestHeader.cs" />
+    <Compile Include="Response\ResponseHeader.cs" />
+    <Compile Include="Requests\TransferenciaRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="IntegracionDS.xsc">
@@ -116,10 +119,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Requests\" />
-    <Folder Include="Response\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
