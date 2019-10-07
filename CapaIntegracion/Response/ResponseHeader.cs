@@ -7,10 +7,10 @@ namespace MainServ
 {
     public class ResponseHeader
     {
-        private int ID;
-        private DateTime dateTime;
-        private int ResponseCode;
-        private string ResponseMessage;
+        protected int ID;
+        protected DateTime dateTime;
+        protected int ResponseCode;
+        protected string ResponseMessage;
 
         public ResponseHeader()
         {
