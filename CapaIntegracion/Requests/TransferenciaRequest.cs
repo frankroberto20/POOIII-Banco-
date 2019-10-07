@@ -24,9 +24,9 @@ namespace MainServ
 
 
         }
-        public TransferenciaResponse Transferencia()
+        public TransferenciaResponse Transferencia(DateTime date, int responseCode, string responseMessage)
         {
-            TransferenciaResponse transferenciaResponse = new TransferenciaResponse();
+            TransferenciaResponse transferenciaResponse = new TransferenciaResponse(date, responseCode, responseMessage);
             return transferenciaResponse;
         }
 

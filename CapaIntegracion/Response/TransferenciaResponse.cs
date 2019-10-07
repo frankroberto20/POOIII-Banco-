@@ -7,9 +7,11 @@ namespace MainServ
 {
     public class TransferenciaResponse: ResponseHeader
     {
-        public TransferenciaResponse()
+        public TransferenciaResponse(DateTime date, int responseCode, string responseMessage)
         {
-
+            dateTime = date;
+            ResponseCode = responseCode;
+            ResponseMessage = responseMessage;
         }
     }
 }
