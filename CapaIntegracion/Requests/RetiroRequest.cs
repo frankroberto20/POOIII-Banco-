@@ -7,6 +7,11 @@ namespace MainServ
 {
     public class RetiroRequest: RequestHeader
     {
+        public RetiroResponse Retiro()
+        {
+            RetiroResponse retiroResponse = new RetiroResponse();
+            return retiroResponse;
+        }
 
 
 

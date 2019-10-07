@@ -76,6 +76,7 @@
     <Compile Include="Requests\BalanceRequest.cs" />
     <Compile Include="Requests\DepositoRequest.cs" />
     <Compile Include="Requests\RetiroRequest.cs" />
+    <Compile Include="Response\BalanceResponse.cs" />
     <Compile Include="Response\DepositoResponse.cs" />
     <Compile Include="MainService.asmx.cs">
       <DependentUpon>MainService.asmx</DependentUpon>
@@ -98,6 +99,8 @@
     <Compile Include="Requests\RequestHeader.cs" />
     <Compile Include="Response\ResponseHeader.cs" />
     <Compile Include="Requests\TransferenciaRequest.cs" />
+    <Compile Include="Response\RetiroResponse.cs" />
+    <Compile Include="Response\TransferenciaResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="IntegracionDS.xsc">

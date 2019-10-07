@@ -10,6 +10,11 @@ namespace MainServ
         private string bancoDestino;
         private int cuentaDestino;
         private int cedulaDestino;
+        public TransferenciaResponse Transferencia()
+        {
+            TransferenciaResponse transferenciaResponse = new TransferenciaResponse();
+            return transferenciaResponse;
+        }
 
 
     }
