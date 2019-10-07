@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using MainServ;
+using log4net;
 
 namespace CapaIntegracion
 {
@@ -17,6 +18,7 @@ namespace CapaIntegracion
     // [System.Web.Script.Services.ScriptService]
     public class MainService : System.Web.Services.WebService
     {
+        private static readonly ILog Logger = LogManager.GetLogger(System.Environment.MachineName);
 
         [WebMethod]
         public DepositoResponse Deposito()
@@ -32,6 +34,11 @@ namespace CapaIntegracion
             }
         }
         [WebMethod]
+        public RetiroResponse Retiro()
+        {
+
+        }
+        [WebMethod]
         // Probablemente los parametros del metodo se cambiaran por un objeto que tendre que descomponer
         public TransferenciaResponse Transferencia(int cuentaOrigen, int cedula, decimal monto, string bancoDestino, int cuentaDestino, int cedulaDestino, DateTime date)
         {
@@ -44,7 +51,7 @@ namespace CapaIntegracion
                 try
                 {
                     //(Aca ira el webMethod de core que me permite enviarle sus parametros)
-                    //Me envian un response
+                    //Me envian un response, ese response lo convierto a nuestro propio response
                     TransferenciaResponse tr = trq.Transferencia();
 
                     if (true)
@@ -55,13 +62,12 @@ namespace CapaIntegracion
                     return tr;
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
-                    throw;
+                    Logger.Info("No conexion con core: " + ex.Message);
+                    if(trq.cuentaOrigen
+                    
                 }
-
-
             }
             else
             {
@@ -71,8 +77,9 @@ namespace CapaIntegracion
                     //if para ejecutar el webservice de ese banco
 
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
+                    Logger.Info("No conexion: " + ex.Message);
                     return (trq.Transferencia(DateTime.Now, 0, "Imposible conexion"));
                 }
             }

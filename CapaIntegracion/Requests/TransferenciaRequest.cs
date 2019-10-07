@@ -7,10 +7,10 @@ namespace MainServ
 {
     public class TransferenciaRequest: RequestHeader
     {
-        private string BancoDestino;
-        private int CuentaDestino;
-        private int CedulaDestino;
-        private decimal Monto;
+        public string BancoDestino;
+        public int CuentaDestino;
+        public int CedulaDestino;
+        public decimal Monto;
 
         public TransferenciaRequest(int cuentaOrigen, int cedula, decimal monto, string bancoDestino, int cuentaDestino, int cedulaDestino)
         {
