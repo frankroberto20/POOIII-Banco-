@@ -7,7 +7,6 @@ namespace MainServ
 {
     public class ResponseHeader
     {
-        protected int ID;
         protected DateTime dateTime;
         protected int ResponseCode;
         protected string ResponseMessage;
@@ -15,6 +14,12 @@ namespace MainServ
         public ResponseHeader()
         {
 
+        }
+        public ResponseHeader(DateTime date, int responseCode, string responseMessage)
+        {
+            dateTime = date;
+            ResponseCode = responseCode;
+            ResponseMessage = responseMessage;
         }
     }
 }

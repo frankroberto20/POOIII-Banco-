@@ -7,9 +7,13 @@ namespace MainServ
 {
     public class BalanceResponse: ResponseHeader
     {
-        public BalanceResponse()
+        protected decimal Balance;
+        public BalanceResponse(DateTime date, int responseCode, string responseMessage, decimal balance)    
         {
-
+            dateTime = date;
+            Balance = balance;
+            ResponseCode = responseCode;
+            ResponseMessage = responseMessage;
         }
     }
 }
