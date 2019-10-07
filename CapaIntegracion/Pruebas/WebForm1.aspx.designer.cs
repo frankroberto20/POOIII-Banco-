@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CapaIntegracion.Requests {
+namespace CapaIntegracion.Pruebas {
     
     
     public partial class WebForm1 {
