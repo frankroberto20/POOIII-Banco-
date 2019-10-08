@@ -7,9 +7,12 @@ namespace MainServ
 {
     public class DepositoResponse: ResponseHeader
     {
-        public DepositoResponse()
+       
+        public DepositoResponse(DateTime date, int responseCode, string responseMessage) : base(date, responseCode, responseMessage)
         {
-
+            dateTime = date;
+            ResponseCode = responseCode;
+            ResponseMessage = responseMessage;
         }
     }
 }

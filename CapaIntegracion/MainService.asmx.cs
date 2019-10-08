@@ -19,19 +19,37 @@ namespace CapaIntegracion
     {
 
         [WebMethod]
-        public DepositoResponse Deposito()
+        public BalanceResponse Balance(int noCuenta)
         {
-            try
-            {
-                //(MetodoCore para descargar la base de datos)
-
-            }
-            catch (Exception ex)
-            {
-
-            }
+            BalanceRequest balanceRequest = new BalanceRequest(noCuenta);
+            return balanceRequest.Balance();
         }
+
         [WebMethod]
+        public RetiroResponse Retiro(int noCuenta, decimal Monto)
+        {
+            RetiroRequest retiroRequest = new RetiroRequest(noCuenta, Monto);
+            return retiroRequest.Retiro();
+        }
+
+        [WebMethod]
+        public DepositoResponse Deposito(int noCuenta, decimal Monto)
+        {
+            DepositoRequest depositoRequest = new DepositoRequest(noCuenta, Monto);
+            return depositoRequest.Deposito();
+        }
+
+        [WebMethod]
+        public TransferenciaResponse Transferencia(int cuentaOrigen, int cedula, decimal monto, string bancoDestino, int cuentaDestino, int cedulaDestino)
+        {
+            TransferenciaRequest transferenciaRequest = new TransferenciaRequest(cuentaOrigen, cedula, monto, bancoDestino, cuentaDestino, cedulaDestino);
+            return transferenciaRequest.Transferencia();
+        }
+    }
+}
+
+
+/*[WebMethod]
         // Probablemente los parametros del metodo se cambiaran por un objeto que tendre que descomponer
         public TransferenciaResponse Transferencia(int cuentaOrigen, int cedula, decimal monto, string bancoDestino, int cuentaDestino, int cedulaDestino)
         {
@@ -58,6 +76,4 @@ namespace CapaIntegracion
                 //Extraer del request el bancoDestino
                 //if para ejecutar el webservice de ese banco
             }
-        }
-    }
-}
+ */

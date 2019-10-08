@@ -7,9 +7,11 @@ namespace MainServ
 {
     public class RetiroResponse: ResponseHeader
     {
-        public RetiroResponse()
+        public RetiroResponse(DateTime date, int responseCode, string responseMessage) : base(date, responseCode, responseMessage)
         {
-
+            dateTime = date;
+            ResponseCode = responseCode;
+            ResponseMessage = responseMessage;
         }
     }
 }
