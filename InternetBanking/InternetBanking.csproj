@@ -141,6 +141,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Imagery\logo-pin.svg.png" />
     <Content Include="Content\Imagery\program_business-administration.jpg" />
+    <Content Include="Content\Transferencia-style.css" />
     <Content Include="Content\login-style.css" />
     <Content Include="Content\register-style.css" />
     <Content Include="Content\Site.css" />
