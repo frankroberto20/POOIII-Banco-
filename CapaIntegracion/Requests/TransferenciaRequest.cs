@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaIntegracion.IntegracionDSTableAdapters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -23,6 +24,35 @@ namespace MainServ
             CedulaDestino = cedulaDestino;
             dateTime = DateTime.Now;
         }
+
+        public bool TransferenciaLocal()
+        {
+            TblClientesTableAdapter tblClientes = new TblClientesTableAdapter(); //FALTA VALIDACION DE CEDULA
+            TblCuentasTableAdapter tblCuentas = new TblCuentasTableAdapter();
+            TblMovimientosTableAdapter tblMovimientos = new TblMovimientosTableAdapter();
+
+            log.Info($"MINICORE: Solicitud transferencia de {Monto} de cuenta {CuentaOrigen} a {CuentaDestino}");
+            decimal balance = Convert.ToDecimal(tblCuentas.GetBalance(CuentaOrigen));
+            if (balance >= Monto)
+            {
+                //AGREGUE COLUMNA A MOVIMIENTOS 0(No se ha enviado a core), 1(si se envio)
+                tblMovimientos.Insert(CuentaOrigen, Monto, DateTime.Now, "transferencia", CuentaDestino, 0);
+                balance -= Monto;
+                tblCuentas.NuevoMovimiento(balance, DateTime.Now, CuentaOrigen);
+                decimal balanceDestino = Convert.ToDecimal(tblCuentas.GetBalance(CuentaDestino));
+                balanceDestino += Monto;
+                tblCuentas.NuevoMovimiento(balanceDestino, DateTime.Now, CuentaDestino);
+
+
+                return true;
+
+            }
+            else
+                return false;
+
+
+        }
+
         /*
         public bool NuevaTransferencia()
         {
@@ -76,51 +106,61 @@ namespace MainServ
             bancoEntities.tblResponses.Add(tblResponses);
             bancoEntities.SaveChanges();
         }
-    }
-    */
+        */
+
         public TransferenciaResponse Transferencia()
         {
-            try
+            if (BancoDestino.ToUpper() == "LOCAL")
             {
-                //webmethod del core
-                bool x = true; //webmethod
-                string message = "x"; //webmethod
-                if (x)
+                try
                 {
-                    DateTime date = DateTime.Now;
-                    log.Info($"Transferencia de {Monto} de la cuenta {CuentaOrigen} a {CuentaDestino} a las {date}, realizada");
-                    TransferenciaResponse transferenciaResponse = new TransferenciaResponse(date, 0, "Transferencia Realizada");
-                    return transferenciaResponse;
+                    //webmethod del core
+                    bool x = true; //webmethod
+                    string message = "x"; //webmethod
+                    if (x)
+                    {
+                        DateTime date = DateTime.Now;
+                        log.Info($"Transferencia de {Monto} de la cuenta {CuentaOrigen} a {CuentaDestino} a las {date}, realizada");
+                        TransferenciaResponse transferenciaResponse = new TransferenciaResponse(date, 0, "Transferencia Realizada");
+                        return transferenciaResponse;
+                    }
+                    else
+                    {
+                        DateTime date = DateTime.Now;
+                        log.Info($"Transferencia de {Monto} de la cuenta {CuentaOrigen} a {CuentaDestino} a las {date}, no ha podido realizarse. Razon: {message}");
+                        TransferenciaResponse transferenciaResponse = new TransferenciaResponse(date, 1, $"Transferencia no Realizada. Razon: {message}");
+                        return transferenciaResponse;
+                    }
                 }
-                else
+                catch (WebException e)
                 {
-                    DateTime date = DateTime.Now;
-                    log.Info($"Transferencia de {Monto} de la cuenta {CuentaOrigen} a {CuentaDestino} a las {date}, no ha podido realizarse. Razon: {message}");
-                    TransferenciaResponse transferenciaResponse = new TransferenciaResponse(date, 1, $"Transferencia no Realizada. Razon: {message}");
-                    return transferenciaResponse;
+                    log.Info($"Core no disponible, utilizando base de datos local {e}");
+                    //NuevaTransferencia();
+                    bool x = true; //depende del mensaje de error
+                    string message = "x"; //depende del mensaje de error
+                    if (x)
+                    {
+                        DateTime date = DateTime.Now;
+                        log.Info($"Transferencia de {Monto} de la cuenta {CuentaOrigen} a {CuentaDestino} a las {date}, realizada");
+                        TransferenciaResponse transferenciaResponse = new TransferenciaResponse(date, 0, "Transferencia Realizada");
+                        return transferenciaResponse;
+                    }
+                    else
+                    {
+                        DateTime date = DateTime.Now;
+                        log.Info($"Transferencia de {Monto} de la cuenta {CuentaOrigen} a {CuentaDestino} a las {date}, no ha podido realizarse. Razon: {message}");
+                        TransferenciaResponse transferenciaResponse = new TransferenciaResponse(date, 1, $"Transferencia no Realizada. Razon: {message}");
+                        return transferenciaResponse;
+                    }
                 }
+
             }
-            catch (WebException e)
+            else
             {
-                log.Info($"Core no disponible, utilizando base de datos local {e}");
-                //NuevaTransferencia();
-                bool x = true; //depende del mensaje de error
-                string message = "x"; //depende del mensaje de error
-                if (x)
-                {
-                    DateTime date = DateTime.Now;
-                    log.Info($"Transferencia de {Monto} de la cuenta {CuentaOrigen} a {CuentaDestino} a las {date}, realizada");
-                    TransferenciaResponse transferenciaResponse = new TransferenciaResponse(date, 0, "Transferencia Realizada");
-                    return transferenciaResponse;
-                }
-                else
-                {
-                    DateTime date = DateTime.Now;
-                    log.Info($"Transferencia de {Monto} de la cuenta {CuentaOrigen} a {CuentaDestino} a las {date}, no ha podido realizarse. Razon: {message}");
-                    TransferenciaResponse transferenciaResponse = new TransferenciaResponse(date, 1, $"Transferencia no Realizada. Razon: {message}");
-                    return transferenciaResponse;
-                }
+                TransferenciaResponse transferenciaResponse = new TransferenciaResponse(DateTime.Now, 1, $"Transferencia no Realizada. Razon: {message}");
+                return transferenciaResponse;
             }
+            
 
 
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaIntegracion.IntegracionDSTableAdapters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -8,6 +9,8 @@ namespace MainServ
 {
     public class RetiroRequest: RequestHeader
     {
+
+    
         protected decimal Monto;
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public RetiroRequest(int NoCuenta, decimal monto)
@@ -16,49 +19,29 @@ namespace MainServ
             Monto = monto;
         }
 
-        /*
-        public bool RealizarRetiro()
+        
+        public bool RealizarRetiroLocal()
         {
-            log.Info($"Solicitud retiro de dinero de cuenta {idCuentaSolicitante}");
-            BancoEntities bancoEntities = new BancoEntities();
-            tblCuenta tblCuenta = new tblCuenta();
-            tblMovimiento tblMovimiento = new tblMovimiento();
-            tblResponses tblResponses = new tblResponses();
-            tblResponses.Request = "Solicitud de retiro de dinero";
-            tblResponses.Fecha = DateTime.Now;
+            TblClientesTableAdapter tblClientes = new TblClientesTableAdapter(); //FALTA VALIDACION DE CEDULA
+            TblCuentasTableAdapter tblCuentas = new TblCuentasTableAdapter();
+            TblMovimientosTableAdapter tblMovimientos = new TblMovimientosTableAdapter();
 
-            var balance = bancoEntities.BuscarBalance(idCuentaSolicitante);
-            double n = 0;
-            foreach (var row in balance)
+
+            log.Info($"MINICORE: Solicitud retiro de {Monto} de cuenta {CuentaOrigen}");
+            decimal balance = Convert.ToDecimal(tblCuentas.GetBalance(CuentaOrigen));
+            if (balance >= Monto)
             {
-                n = double.Parse(row.ToString());
-            }
-
-            if (n >= monto)
-            {
-                tblMovimiento.Monto___RD_ = monto;
-                tblMovimiento.Fecha_de_movimiento = DateTime.Now;
-                tblMovimiento.Tipo = "Retiro";
-                tblMovimiento.idCuentaSolicitante = idCuentaSolicitante;
-                bancoEntities.tblMovimientos.Add(tblMovimiento);
-
-                bancoEntities.RetirarDinero(monto, idCuentaSolicitante);
-                tblResponses.Resultado = "Satisfactorio";
-                ResponseRetiroDinero = new ResponseRetiroDinero("Retiro de dinero realizado con exito");
+                //AGREGUE COLUMNA A MOVIMIENTOS 0(No se ha enviado a core), 1(si se envio)
+                tblMovimientos.Insert(CuentaOrigen, Monto, DateTime.Now, "Retiro", null, 0);
+                balance -= Monto;
+                tblCuentas.NuevoMovimiento(balance, DateTime.Now, CuentaOrigen);
+                return true;
 
             }
             else
-            {
-                tblResponses.Resultado = "Fallida";
-                bancoEntities.tblResponses.Add(tblResponses);
-                ResponseRetiroDinero = new ResponseRetiroDinero("Retiro de dinero fallido. Monto de retiro excede balance en cuenta");
-            }
-            Console.WriteLine(ResponseRetiroDinero.Mensaje);
-            bancoEntities.tblResponses.Add(tblResponses);
-            bancoEntities.SaveChanges();
-
+                return false;
         }
-        */
+        
 
         public RetiroResponse Retiro()
         {
@@ -87,20 +70,22 @@ namespace MainServ
             {
                 log.Info($"Core no disponible, utilizando base de datos local {e}");
                 //RealizarRetiro();
-                bool x = true; //depende del mensaje de error
-                string message = "x"; //depende del mensaje de error
+                bool x = RealizarRetiroLocal(); //depende del mensaje de error
+                //string message = "x"; //depende del mensaje de error
                 if (x)
                 {
-                    DateTime date = DateTime.Now;
-                    log.Info($"Retiro de {Monto} de la cuenta {CuentaOrigen} a las {date}, realizado ");
-                    RetiroResponse retiroResponse = new RetiroResponse(date, 0, "Retiro Realizado");
+                    //DateTime date = DateTime.Now;
+                    //log.Info($"Retiro de {Monto} de la cuenta {CuentaOrigen} a las {date}, realizado ");(LA HORA ES INNECESARIA LOG4NET LA COLOCA POR DEFAULT)
+                    log.Info($"MINICORE: Retiro realizado de {Monto} de cuenta {CuentaOrigen}");
+                    RetiroResponse retiroResponse = new RetiroResponse(DateTime.Now, 0, "Retiro Realizado");
                     return retiroResponse;
                 }
                 else
                 {
-                    DateTime date = DateTime.Now;
-                    log.Info($"Retiro de {Monto} de la cuenta {CuentaOrigen} a las {date}, no ha podido realizarse. Razon: {message}");
-                    RetiroResponse retiroResponse = new RetiroResponse(date, 1, $"Retiro no Realizado. Razon: {message}"); //RealizarDeposito();
+                    //DateTime date = DateTime.Now;
+                    log.Info($"MINICORE: Retiro FALLIDO de {Monto} de cuenta {CuentaOrigen}");
+                    //log.Info($"Retiro de {Monto} de la cuenta {CuentaOrigen}, no ha podido realizarse. Razon: {message}");
+                    RetiroResponse retiroResponse = new RetiroResponse(DateTime.Now, 1, $"Retiro FALLIDO. Razon: {message}"); //RealizarDeposito();
                     return retiroResponse;
                 }
             }

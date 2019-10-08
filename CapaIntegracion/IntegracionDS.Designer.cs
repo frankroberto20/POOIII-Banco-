@@ -1057,6 +1057,8 @@ namespace CapaIntegracion {
             
             private global::System.Data.DataColumn columnSolicitante;
             
+            private global::System.Data.DataColumn columnEnviada;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public TblMovimientosDataTable() {
@@ -1140,6 +1142,14 @@ namespace CapaIntegracion {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn EnviadaColumn {
+                get {
+                    return this.columnEnviada;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1175,15 +1185,16 @@ namespace CapaIntegracion {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public TblMovimientosRow AddTblMovimientosRow(int Id, int Cuenta, decimal Monto, System.DateTime FechaMovimiento, string Operacion, string Solicitante) {
+            public TblMovimientosRow AddTblMovimientosRow(int Cuenta, decimal Monto, System.DateTime FechaMovimiento, string Operacion, int Solicitante, short Enviada) {
                 TblMovimientosRow rowTblMovimientosRow = ((TblMovimientosRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Id,
+                        null,
                         Cuenta,
                         Monto,
                         FechaMovimiento,
                         Operacion,
-                        Solicitante};
+                        Solicitante,
+                        Enviada};
                 rowTblMovimientosRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTblMovimientosRow);
                 return rowTblMovimientosRow;
@@ -1219,6 +1230,7 @@ namespace CapaIntegracion {
                 this.columnFechaMovimiento = base.Columns["FechaMovimiento"];
                 this.columnOperacion = base.Columns["Operacion"];
                 this.columnSolicitante = base.Columns["Solicitante"];
+                this.columnEnviada = base.Columns["Enviada"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1234,18 +1246,24 @@ namespace CapaIntegracion {
                 base.Columns.Add(this.columnFechaMovimiento);
                 this.columnOperacion = new global::System.Data.DataColumn("Operacion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOperacion);
-                this.columnSolicitante = new global::System.Data.DataColumn("Solicitante", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnSolicitante = new global::System.Data.DataColumn("Solicitante", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSolicitante);
+                this.columnEnviada = new global::System.Data.DataColumn("Enviada", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEnviada);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
+                this.columnId.AutoIncrement = true;
+                this.columnId.AutoIncrementSeed = -1;
+                this.columnId.AutoIncrementStep = -1;
                 this.columnId.AllowDBNull = false;
+                this.columnId.ReadOnly = true;
                 this.columnId.Unique = true;
                 this.columnCuenta.AllowDBNull = false;
                 this.columnMonto.AllowDBNull = false;
                 this.columnFechaMovimiento.AllowDBNull = false;
                 this.columnOperacion.AllowDBNull = false;
                 this.columnOperacion.MaxLength = 50;
-                this.columnSolicitante.MaxLength = 50;
+                this.columnEnviada.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1797,10 +1815,10 @@ namespace CapaIntegracion {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string Solicitante {
+            public int Solicitante {
                 get {
                     try {
-                        return ((string)(this[this.tableTblMovimientos.SolicitanteColumn]));
+                        return ((int)(this[this.tableTblMovimientos.SolicitanteColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Solicitante\' in table \'TblMovimientos\' is DBNull.", e);
@@ -1808,6 +1826,17 @@ namespace CapaIntegracion {
                 }
                 set {
                     this[this.tableTblMovimientos.SolicitanteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public short Enviada {
+                get {
+                    return ((short)(this[this.tableTblMovimientos.EnviadaColumn]));
+                }
+                set {
+                    this[this.tableTblMovimientos.EnviadaColumn] = value;
                 }
             }
             
@@ -2485,12 +2514,31 @@ namespace CapaIntegracion.IntegracionDSTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT NumeroDeCuenta, TipoDeCuenta, TitularDeCuenta, Balance, UltimaTransaccion," +
                 " FechaDeCreacion FROM dbo.TblCuentas";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT Balance\r\nFROM   TblCuentas\r\nWHERE (NumeroDeCuenta = @cuenta)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cuenta", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "NumeroDeCuenta", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT TitularDeCuenta\r\nFROM dbo.TblCuentas\r\nWHERE (NumeroDeCuenta = @Cuenta)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Cuenta", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "NumeroDeCuenta", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = "UPDATE [dbo].[TblCuentas] SET [NumeroDeCuenta], [TipoDeCuenta], [TitularDeCuenta]" +
+                ", [Balance] = @Balance, [UltimaTransaccion] = @UltimaTransaccion, [FechaDeCreaci" +
+                "on] WHERE (([NumeroDeCuenta] = @Original_NumeroDeCuenta))";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Balance", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, "Balance", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UltimaTransaccion", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "UltimaTransaccion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NumeroDeCuenta", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "NumeroDeCuenta", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2670,6 +2718,100 @@ namespace CapaIntegracion.IntegracionDSTableAdapters {
         public virtual int Update(string TipoDeCuenta, int TitularDeCuenta, global::System.Nullable<decimal> Balance, global::System.Nullable<global::System.DateTime> UltimaTransaccion, global::System.Nullable<global::System.DateTime> FechaDeCreacion, int Original_NumeroDeCuenta) {
             return this.Update(Original_NumeroDeCuenta, TipoDeCuenta, TitularDeCuenta, Balance, UltimaTransaccion, FechaDeCreacion, Original_NumeroDeCuenta);
         }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual global::System.Nullable<decimal> GetBalance(int cuenta) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
+            command.Parameters[0].Value = ((int)(cuenta));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return new global::System.Nullable<decimal>();
+            }
+            else {
+                return new global::System.Nullable<decimal>(((decimal)(returnValue)));
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual global::System.Nullable<int> GetTitular(int Cuenta) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
+            command.Parameters[0].Value = ((int)(Cuenta));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return new global::System.Nullable<int>();
+            }
+            else {
+                return new global::System.Nullable<int>(((int)(returnValue)));
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
+        public virtual int NuevoMovimiento(global::System.Nullable<decimal> Balance, global::System.Nullable<global::System.DateTime> UltimaTransaccion, int Original_NumeroDeCuenta) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
+            if ((Balance.HasValue == true)) {
+                command.Parameters[0].Value = ((decimal)(Balance.Value));
+            }
+            else {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((UltimaTransaccion.HasValue == true)) {
+                command.Parameters[1].Value = ((System.DateTime)(UltimaTransaccion.Value));
+            }
+            else {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            command.Parameters[2].Value = ((int)(Original_NumeroDeCuenta));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
     }
     
     /// <summary>
@@ -2799,6 +2941,7 @@ namespace CapaIntegracion.IntegracionDSTableAdapters {
             tableMapping.ColumnMappings.Add("FechaMovimiento", "FechaMovimiento");
             tableMapping.ColumnMappings.Add("Operacion", "Operacion");
             tableMapping.ColumnMappings.Add("Solicitante", "Solicitante");
+            tableMapping.ColumnMappings.Add("Enviada", "Enviada");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -2807,28 +2950,28 @@ namespace CapaIntegracion.IntegracionDSTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TblMovimientos] ([Id], [Cuenta], [Monto], [FechaMovimiento], [" +
-                "Operacion], [Solicitante]) VALUES (@Id, @Cuenta, @Monto, @FechaMovimiento, @Oper" +
-                "acion, @Solicitante)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TblMovimientos] ([Cuenta], [Monto], [FechaMovimiento], [Operac" +
+                "ion], [Solicitante], [Enviada]) VALUES (@Cuenta, @Monto, @FechaMovimiento, @Oper" +
+                "acion, @Solicitante, @Enviada)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Cuenta", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Cuenta", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Monto", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "Monto", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaMovimiento", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FechaMovimiento", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Operacion", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Operacion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Solicitante", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Solicitante", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Solicitante", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Solicitante", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Enviada", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Enviada", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[TblMovimientos] SET [Id] = @Id, [Cuenta] = @Cuenta, [Monto] = @Mont" +
-                "o, [FechaMovimiento] = @FechaMovimiento, [Operacion] = @Operacion, [Solicitante]" +
-                " = @Solicitante WHERE (([Id] = @Original_Id))";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[TblMovimientos] SET [Cuenta] = @Cuenta, [Monto] = @Monto, [FechaMov" +
+                "imiento] = @FechaMovimiento, [Operacion] = @Operacion, [Solicitante] = @Solicita" +
+                "nte, [Enviada] = @Enviada WHERE (([Id] = @Original_Id))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Cuenta", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Cuenta", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Monto", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 0, "Monto", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaMovimiento", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FechaMovimiento", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Operacion", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Operacion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Solicitante", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Solicitante", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Solicitante", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Solicitante", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Enviada", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Enviada", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
@@ -2845,8 +2988,8 @@ namespace CapaIntegracion.IntegracionDSTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Id, Cuenta, Monto, FechaMovimiento, Operacion, Solicitante FROM dbo.TblMov" +
-                "imientos";
+            this._commandCollection[0].CommandText = "SELECT Id, Cuenta, Monto, FechaMovimiento, Operacion, Solicitante, Enviada FROM d" +
+                "bo.TblMovimientos";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -2929,23 +3072,23 @@ namespace CapaIntegracion.IntegracionDSTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int Id, int Cuenta, decimal Monto, System.DateTime FechaMovimiento, string Operacion, string Solicitante) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(Id));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(Cuenta));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((decimal)(Monto));
-            this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(FechaMovimiento));
+        public virtual int Insert(int Cuenta, decimal Monto, System.DateTime FechaMovimiento, string Operacion, global::System.Nullable<int> Solicitante, short Enviada) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(Cuenta));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((decimal)(Monto));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(FechaMovimiento));
             if ((Operacion == null)) {
                 throw new global::System.ArgumentNullException("Operacion");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(Operacion));
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(Operacion));
             }
-            if ((Solicitante == null)) {
-                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
+            if ((Solicitante.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((int)(Solicitante.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(Solicitante));
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
+            this.Adapter.InsertCommand.Parameters[5].Value = ((short)(Enviada));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2966,23 +3109,23 @@ namespace CapaIntegracion.IntegracionDSTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int Id, int Cuenta, decimal Monto, System.DateTime FechaMovimiento, string Operacion, string Solicitante, int Original_Id) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(Id));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(Cuenta));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((decimal)(Monto));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(FechaMovimiento));
+        public virtual int Update(int Cuenta, decimal Monto, System.DateTime FechaMovimiento, string Operacion, global::System.Nullable<int> Solicitante, short Enviada, int Original_Id) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(Cuenta));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((decimal)(Monto));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((System.DateTime)(FechaMovimiento));
             if ((Operacion == null)) {
                 throw new global::System.ArgumentNullException("Operacion");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Operacion));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Operacion));
             }
-            if ((Solicitante == null)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+            if ((Solicitante.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Solicitante.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Solicitante));
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((short)(Enviada));
             this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2998,14 +3141,6 @@ namespace CapaIntegracion.IntegracionDSTableAdapters {
                     this.Adapter.UpdateCommand.Connection.Close();
                 }
             }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int Cuenta, decimal Monto, System.DateTime FechaMovimiento, string Operacion, string Solicitante, int Original_Id) {
-            return this.Update(Original_Id, Cuenta, Monto, FechaMovimiento, Operacion, Solicitante, Original_Id);
         }
     }
     

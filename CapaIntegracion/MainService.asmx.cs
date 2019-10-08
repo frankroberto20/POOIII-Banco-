@@ -19,9 +19,9 @@ namespace CapaIntegracion
     {
 
         [WebMethod]
-        public BalanceResponse Balance(int noCuenta)
+        public BalanceResponse Balance(int noCuenta, int cedula)
         {
-            BalanceRequest balanceRequest = new BalanceRequest(noCuenta);
+            BalanceRequest balanceRequest = new BalanceRequest(noCuenta, cedula);
             return balanceRequest.Balance();
         }
 
