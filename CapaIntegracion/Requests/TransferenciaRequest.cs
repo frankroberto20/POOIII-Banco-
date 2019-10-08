@@ -27,86 +27,35 @@ namespace MainServ
 
         public bool TransferenciaLocal()
         {
-            TblClientesTableAdapter tblClientes = new TblClientesTableAdapter(); //FALTA VALIDACION DE CEDULA
+            TblClientesTableAdapter tblClientes = new TblClientesTableAdapter(); 
             TblCuentasTableAdapter tblCuentas = new TblCuentasTableAdapter();
             TblMovimientosTableAdapter tblMovimientos = new TblMovimientosTableAdapter();
 
             log.Info($"MINICORE: Solicitud transferencia de {Monto} de cuenta {CuentaOrigen} a {CuentaDestino}");
-            decimal balance = Convert.ToDecimal(tblCuentas.GetBalance(CuentaOrigen));
-            if (balance >= Monto)
+            if (tblCuentas.GetTitular(CuentaOrigen) == Cedula && tblCuentas.GetTitular(CuentaDestino) == CedulaDestino)  
             {
-                //AGREGUE COLUMNA A MOVIMIENTOS 0(No se ha enviado a core), 1(si se envio)
-                tblMovimientos.Insert(CuentaOrigen, Monto, DateTime.Now, "transferencia", CuentaDestino, 0);
-                balance -= Monto;
-                tblCuentas.NuevoMovimiento(balance, DateTime.Now, CuentaOrigen);
-                decimal balanceDestino = Convert.ToDecimal(tblCuentas.GetBalance(CuentaDestino));
-                balanceDestino += Monto;
-                tblCuentas.NuevoMovimiento(balanceDestino, DateTime.Now, CuentaDestino);
+                decimal balance = Convert.ToDecimal(tblCuentas.GetBalance(CuentaOrigen));
+                if (balance >= Monto)
+                {
+                    //AGREGUE COLUMNA A MOVIMIENTOS 0(No se ha enviado a core), 1(si se envio)
+                    tblMovimientos.Insert(CuentaOrigen, Monto, DateTime.Now, "transferencia", CuentaDestino, 0);
+                    balance -= Monto;
+                    tblCuentas.NuevoMovimiento(balance, DateTime.Now, CuentaOrigen);
+                    decimal balanceDestino = Convert.ToDecimal(tblCuentas.GetBalance(CuentaDestino));
+                    balanceDestino += Monto;
+                    tblCuentas.NuevoMovimiento(balanceDestino, DateTime.Now, CuentaDestino);
 
+                    return true;
 
-                return true;
-
+                }
+                else
+                    return false;
             }
             else
                 return false;
 
 
         }
-
-        /*
-        public bool NuevaTransferencia()
-        {
-            log.Info($"Solicitud de transaccion de dinero de cuenta {idCuentaSolicitante} a cuenta {idCuentaDestino}");
-            BancoEntities bancoEntities = new BancoEntities();
-            tblCuenta tblCuenta = new tblCuenta();
-            tblMovimiento tblMovimiento = new tblMovimiento();
-            tblResponses tblResponses = new tblResponses();
-            tblResponses.Request = "Solicitud de transaccion";
-            tblResponses.Fecha = DateTime.Now;
-
-            var balance1 = bancoEntities.BuscarBalance(idCuentaSolicitante);
-            var balance2 = bancoEntities.BuscarBalance(idCuentaSolicitante);
-
-            double dinero = 0;
-            foreach (var row in balance1)
-            {
-                dinero = double.Parse(row.ToString());
-            }
-            var balance3 = bancoEntities.BuscarBalance(idCuentaSolicitante);
-            int numero = balance3.Count() + balance2.Count();
-            if (numero == 2)
-            {
-                if (dinero >= monto)
-                {
-                    tblMovimiento.Monto___RD_ = monto;
-                    tblMovimiento.Fecha_de_movimiento = DateTime.Now;
-                    tblMovimiento.Tipo = "Transaccion";
-                    tblMovimiento.idCuentaSolicitante = idCuentaSolicitante;
-                    tblMovimiento.idCuentaDestino = idCuentaDestino;
-                    bancoEntities.tblMovimientos.Add(tblMovimiento);
-
-                    bancoEntities.Transferencia(monto, idCuentaSolicitante, idCuentaDestino);
-
-                    tblResponses.Resultado = "Satisfactorio";
-
-                    ResponseTransaccion = new ResponseTransaccion("Transaccion realizada con exito");
-                }
-                else
-                {
-                    tblResponses.Resultado = "Fallida";
-                    ResponseTransaccion = new ResponseTransaccion("Transaccion No se pudo realizar (monto excedia al balance en cuenta)");
-                }
-            }
-            else
-            {
-                tblResponses.Resultado = "Fallida";
-                ResponseTransaccion = new ResponseTransaccion("Transaccion No se pudo realizar (una de las cuentas no existe)");
-            }
-            Console.WriteLine(ResponseTransaccion.Mensaje);
-            bancoEntities.tblResponses.Add(tblResponses);
-            bancoEntities.SaveChanges();
-        }
-        */
 
         public TransferenciaResponse Transferencia()
         {

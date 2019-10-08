@@ -22,30 +22,33 @@ namespace MainServ
         
         public bool RealizarRetiroLocal()
         {
-            TblClientesTableAdapter tblClientes = new TblClientesTableAdapter(); //FALTA VALIDACION DE CEDULA
+            TblClientesTableAdapter tblClientes = new TblClientesTableAdapter(); 
             TblCuentasTableAdapter tblCuentas = new TblCuentasTableAdapter();
             TblMovimientosTableAdapter tblMovimientos = new TblMovimientosTableAdapter();
 
 
             log.Info($"MINICORE: Solicitud retiro de {Monto} de cuenta {CuentaOrigen}");
             decimal balance = Convert.ToDecimal(tblCuentas.GetBalance(CuentaOrigen));
-            if (balance >= Monto)
+            if (tblCuentas.GetTitular(CuentaOrigen) == Cedula)
             {
-                //AGREGUE COLUMNA A MOVIMIENTOS 0(No se ha enviado a core), 1(si se envio)
-                tblMovimientos.Insert(CuentaOrigen, Monto, DateTime.Now, "Retiro", null, 0);
-                balance -= Monto;
-                tblCuentas.NuevoMovimiento(balance, DateTime.Now, CuentaOrigen);
-                return true;
-
+                if (balance >= Monto)
+                {
+                    //AGREGUE COLUMNA A MOVIMIENTOS 0(No se ha enviado a core), 1(si se envio)
+                    tblMovimientos.Insert(CuentaOrigen, Monto, DateTime.Now, "Retiro", null, 0);
+                    balance -= Monto;
+                    tblCuentas.NuevoMovimiento(balance, DateTime.Now, CuentaOrigen);
+                    return true;
+                }
+                else
+                    return false;
             }
             else
-                return false;
+                return true;       
         }
         
 
         public RetiroResponse Retiro()
         {
-
             try
             {
                 //webmethod del core
