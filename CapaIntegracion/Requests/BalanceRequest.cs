@@ -10,7 +10,7 @@ namespace CapaIntegracion
 {
     public class BalanceRequest : RequestHeader
     {
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog Logger = LogManager.GetLogger(System.Environment.MachineName);
 
         public BalanceRequest(int NoCuenta, int cedula)
         {
@@ -42,24 +42,24 @@ namespace CapaIntegracion
                 decimal balance = 0; //webmethod
                 //webmethod del core
                 DateTime date = DateTime.Now;
-                log.Info($"Chequeo de balance a cuenta {CuentaOrigen} a las {date}, realizado");
+                Logger.Info($"Chequeo de balance a cuenta {CuentaOrigen} a las {date}, realizado");
                 BalanceResponse balanceResponse = new BalanceResponse(DateTime.Now, 0, "Success", balance);
                 return balanceResponse;
             }
             catch (WebException e)
             {
                 TblCuentasTableAdapter tblCuentas = new TblCuentasTableAdapter();
-                log.Info($"Core no disponible, utilizando base de datos local {e}");
+                Logger.Info($"Core no disponible, utilizando base de datos local {e}");
                 if (Cedula == Convert.ToInt32(tblCuentas.GetTitular(CuentaOrigen)))
                 {
                     decimal balance = BalanceLocal(); //ConsultarBalance();
-                    log.Info($"Chequeo de balance a cuenta {CuentaOrigen} realizado");
+                    Logger.Info($"Chequeo de balance a cuenta {CuentaOrigen} realizado");
                     BalanceResponse balanceResponse = new BalanceResponse(DateTime.Now, 0, "Success", balance); //ConsultarBalance();
                     return balanceResponse;
                 }
                 else
                 {
-                    log.Info($"Chequeo de balance a cuenta {CuentaOrigen} Fallido, cedula y cuenta no coinciden");
+                    Logger.Info($"Chequeo de balance a cuenta {CuentaOrigen} Fallido, cedula y cuenta no coinciden");
                     BalanceResponse balanceResponse = new BalanceResponse(DateTime.Now, 1, "Cedula y Cuenta no coinciden", 0); //ConsultarBalance();
                     return balanceResponse;
                 }

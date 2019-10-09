@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,11 +18,12 @@ namespace CapaIntegracion
     //[System.Web.Script.Services.ScriptService]
     public class MainService : System.Web.Services.WebService
     {
+        private static readonly ILog Logger = LogManager.GetLogger(System.Environment.MachineName);
+
 
         [WebMethod(MessageName = "BalanceMethod")]
         public BalanceResponse Balance(int noCuenta, int cedula)
         {
-
             BalanceRequest balanceRequest = new BalanceRequest(noCuenta, cedula);
             return balanceRequest.Balance();
         }

@@ -1,4 +1,5 @@
 ﻿using CapaIntegracion.IntegracionDSTableAdapters;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace CapaIntegracion
 
     
         protected decimal Monto;
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog Logger = LogManager.GetLogger(System.Environment.MachineName);
         public RetiroRequest(int NoCuenta, decimal monto)
         {
             CuentaOrigen = NoCuenta;
@@ -27,7 +28,7 @@ namespace CapaIntegracion
             TblMovimientosTableAdapter tblMovimientos = new TblMovimientosTableAdapter();
 
 
-            log.Info($"MINICORE: Solicitud retiro de {Monto} de cuenta {CuentaOrigen}");
+            Logger.Info($"MINICORE: Solicitud retiro de {Monto} de cuenta {CuentaOrigen}");
             decimal balance = Convert.ToDecimal(tblCuentas.GetBalance(CuentaOrigen));
             if (tblCuentas.GetTitular(CuentaOrigen) == Cedula)
             {
@@ -57,21 +58,21 @@ namespace CapaIntegracion
                 if (x)
                 {
                     DateTime date = DateTime.Now;
-                    log.Info($"Retiro de {Monto} de la cuenta {CuentaOrigen} a las {date}, realizado ");
+                    Logger.Info($"Retiro de {Monto} de la cuenta {CuentaOrigen} a las {date}, realizado ");
                     RetiroResponse retiroResponse = new RetiroResponse(date, 0, "Retiro Realizado");
                     return retiroResponse;
                 }
                 else
                 {
                     DateTime date = DateTime.Now;
-                    log.Info($"Retiro de {Monto} de la cuenta {CuentaOrigen} a las {date}, no ha podido realizarse. Razon: {message}");
+                    Logger.Info($"Retiro de {Monto} de la cuenta {CuentaOrigen} a las {date}, no ha podido realizarse. Razon: {message}");
                     RetiroResponse retiroResponse = new RetiroResponse(date, 1, $"Retiro no Realizado. Razon: {message}");
                     return retiroResponse;
                 }
             }
             catch (WebException e)
             {
-                log.Info($"Core no disponible, utilizando base de datos local {e}");
+                Logger.Info($"Core no disponible, utilizando base de datos local {e}");
                 //RealizarRetiro();
                 bool x = RealizarRetiroLocal(); //depende del mensaje de error
                 string message = "x"; //depende del mensaje de error
@@ -79,14 +80,14 @@ namespace CapaIntegracion
                 {
                     //DateTime date = DateTime.Now;
                     //log.Info($"Retiro de {Monto} de la cuenta {CuentaOrigen} a las {date}, realizado ");(LA HORA ES INNECESARIA LOG4NET LA COLOCA POR DEFAULT)
-                    log.Info($"MINICORE: Retiro realizado de {Monto} de cuenta {CuentaOrigen}");
+                    Logger.Info($"MINICORE: Retiro realizado de {Monto} de cuenta {CuentaOrigen}");
                     RetiroResponse retiroResponse = new RetiroResponse(DateTime.Now, 0, "Retiro Realizado");
                     return retiroResponse;
                 }
                 else
                 {
                     //DateTime date = DateTime.Now;
-                    log.Info($"MINICORE: Retiro FALLIDO de {Monto} de cuenta {CuentaOrigen}");
+                    Logger.Info($"MINICORE: Retiro FALLIDO de {Monto} de cuenta {CuentaOrigen}");
                     //log.Info($"Retiro de {Monto} de la cuenta {CuentaOrigen}, no ha podido realizarse. Razon: {message}");
                     RetiroResponse retiroResponse = new RetiroResponse(DateTime.Now, 1, $"Retiro FALLIDO. Razon: {message}"); //RealizarDeposito();
                     return retiroResponse;
