@@ -28,15 +28,14 @@ namespace CapaIntegracion
 
         public BalanceResponse Balance()
         {
-
             try
             {
                 CoreServices.WebServicesCoreSoapClient coreSoap = new CoreServices.WebServicesCoreSoapClient();
-                var response = coreSoap.Consulta_de_balance(Cedula.ToString(), CuentaOrigen.ToString());
+                var response = coreSoap.Consulta_de_balance(Cedula, CuentaOrigen.ToString());
                 if (response.validar == 0)
                 {
-                    Logger.Info($"Chequeo de balance a cuenta {CuentaOrigen} realizado");
-                    BalanceResponse balanceResponse = new BalanceResponse(DateTime.Now, response.validar, "Success", response.Monto);
+                    Logger.Info($"Chequeo realizado de balance a cuenta {CuentaOrigen}");
+                    BalanceResponse balanceResponse = new BalanceResponse(DateTime.Now, response.validar, response.Mensaje, response.Monto);
                     return balanceResponse;
                 }
                 else
