@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="https://capaintegracionbanco.azurewebsites.net" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="https://capaintegracionbanco.azurewebsites.net" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="https://capaintegracionbanco.azurewebsites.net">
+      <s:element name="BalanceMethod">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="noCuenta" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="cedula" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BalanceMethodResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BalanceMethodResult" type="tns:BalanceResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BalanceResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseHeader">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="Balance" type="s:decimal" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ResponseHeader">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="dateTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResponseCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RetiroMethod">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="noCuenta" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Monto" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetiroMethodResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetiroMethodResult" type="tns:RetiroResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RetiroResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseHeader" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="DepositoMethod">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="noCuenta" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="cedula" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Monto" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DepositoMethodResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DepositoMethodResult" type="tns:DepositoResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DepositoResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseHeader" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="TransferenciaMethod">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cuentaOrigen" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="cedula" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="monto" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="bancoDestino" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="cuentaDestino" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="cedulaDestino" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TransferenciaMethodResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TransferenciaMethodResult" type="tns:TransferenciaResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TransferenciaResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseHeader" />
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="BalanceMethodSoapIn">
+    <wsdl:part name="parameters" element="tns:BalanceMethod" />
+  </wsdl:message>
+  <wsdl:message name="BalanceMethodSoapOut">
+    <wsdl:part name="parameters" element="tns:BalanceMethodResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetiroMethodSoapIn">
+    <wsdl:part name="parameters" element="tns:RetiroMethod" />
+  </wsdl:message>
+  <wsdl:message name="RetiroMethodSoapOut">
+    <wsdl:part name="parameters" element="tns:RetiroMethodResponse" />
+  </wsdl:message>
+  <wsdl:message name="DepositoMethodSoapIn">
+    <wsdl:part name="parameters" element="tns:DepositoMethod" />
+  </wsdl:message>
+  <wsdl:message name="DepositoMethodSoapOut">
+    <wsdl:part name="parameters" element="tns:DepositoMethodResponse" />
+  </wsdl:message>
+  <wsdl:message name="TransferenciaMethodSoapIn">
+    <wsdl:part name="parameters" element="tns:TransferenciaMethod" />
+  </wsdl:message>
+  <wsdl:message name="TransferenciaMethodSoapOut">
+    <wsdl:part name="parameters" element="tns:TransferenciaMethodResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MainServiceSoap">
+    <wsdl:operation name="Balance">
+      <wsdl:input name="BalanceMethod" message="tns:BalanceMethodSoapIn" />
+      <wsdl:output name="BalanceMethod" message="tns:BalanceMethodSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Retiro">
+      <wsdl:input name="RetiroMethod" message="tns:RetiroMethodSoapIn" />
+      <wsdl:output name="RetiroMethod" message="tns:RetiroMethodSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Deposito">
+      <wsdl:input name="DepositoMethod" message="tns:DepositoMethodSoapIn" />
+      <wsdl:output name="DepositoMethod" message="tns:DepositoMethodSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Transferencia">
+      <wsdl:input name="TransferenciaMethod" message="tns:TransferenciaMethodSoapIn" />
+      <wsdl:output name="TransferenciaMethod" message="tns:TransferenciaMethodSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MainServiceSoap" type="tns:MainServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Balance">
+      <soap:operation soapAction="https://capaintegracionbanco.azurewebsites.net/BalanceMethod" style="document" />
+      <wsdl:input name="BalanceMethod">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="BalanceMethod">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Retiro">
+      <soap:operation soapAction="https://capaintegracionbanco.azurewebsites.net/RetiroMethod" style="document" />
+      <wsdl:input name="RetiroMethod">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="RetiroMethod">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Deposito">
+      <soap:operation soapAction="https://capaintegracionbanco.azurewebsites.net/DepositoMethod" style="document" />
+      <wsdl:input name="DepositoMethod">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DepositoMethod">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Transferencia">
+      <soap:operation soapAction="https://capaintegracionbanco.azurewebsites.net/TransferenciaMethod" style="document" />
+      <wsdl:input name="TransferenciaMethod">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="TransferenciaMethod">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MainServiceSoap12" type="tns:MainServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Balance">
+      <soap12:operation soapAction="https://capaintegracionbanco.azurewebsites.net/BalanceMethod" style="document" />
+      <wsdl:input name="BalanceMethod">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="BalanceMethod">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Retiro">
+      <soap12:operation soapAction="https://capaintegracionbanco.azurewebsites.net/RetiroMethod" style="document" />
+      <wsdl:input name="RetiroMethod">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="RetiroMethod">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Deposito">
+      <soap12:operation soapAction="https://capaintegracionbanco.azurewebsites.net/DepositoMethod" style="document" />
+      <wsdl:input name="DepositoMethod">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DepositoMethod">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Transferencia">
+      <soap12:operation soapAction="https://capaintegracionbanco.azurewebsites.net/TransferenciaMethod" style="document" />
+      <wsdl:input name="TransferenciaMethod">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="TransferenciaMethod">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MainService">
+    <wsdl:port name="MainServiceSoap" binding="tns:MainServiceSoap">
+      <soap:address location="https://capaintegracionbanco.azurewebsites.net/MainService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MainServiceSoap12" binding="tns:MainServiceSoap12">
+      <soap12:address location="https://capaintegracionbanco.azurewebsites.net/MainService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -34,9 +34,9 @@ namespace CapaIntegracion
         }
 
         [WebMethod(MessageName = "DepositoMethod")]
-        public DepositoResponse Deposito(int noCuenta, decimal Monto)
+        public DepositoResponse Deposito(int noCuenta, int cedula, decimal Monto)
         {
-            DepositoRequest depositoRequest = new DepositoRequest(noCuenta, Monto);
+            DepositoRequest depositoRequest = new DepositoRequest(noCuenta, cedula, Monto);
             return depositoRequest.Deposito();
         }
 

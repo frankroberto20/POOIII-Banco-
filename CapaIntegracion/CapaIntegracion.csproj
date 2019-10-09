@@ -80,12 +80,48 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Connected Services\integracion\CapaIntegracion.integracion.BalanceMethod1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\integracion\CapaIntegracion.integracion.BalanceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\integracion\CapaIntegracion.integracion.DepositoMethod1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\integracion\CapaIntegracion.integracion.DepositoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\integracion\CapaIntegracion.integracion.RetiroMethod1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\integracion\CapaIntegracion.integracion.RetiroResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\integracion\CapaIntegracion.integracion.TransferenciaMethod1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\integracion\CapaIntegracion.integracion.TransferenciaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\integracion\MainService.disco" />
+    <None Include="Connected Services\integracion\configuration91.svcinfo" />
+    <None Include="Connected Services\integracion\configuration.svcinfo" />
+    <None Include="Connected Services\integracion\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="MainService.asmx" />
     <Content Include="Pruebas\WebForm1.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connected Services\CoreServices\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\integracion\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -124,6 +160,7 @@
       <DependentUpon>IntegracionDS.xsd</DependentUpon>
     </Content>
     <None Include="Connected Services\CoreServices\WebServicesCore.wsdl" />
+    <None Include="Connected Services\integracion\MainService.wsdl" />
     <None Include="IntegracionDS.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -146,6 +183,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\CoreServices\" />
+    <WCFMetadataStorage Include="Connected Services\integracion\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

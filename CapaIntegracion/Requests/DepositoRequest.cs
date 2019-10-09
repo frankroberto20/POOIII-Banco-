@@ -1,4 +1,5 @@
 ﻿using CapaIntegracion.IntegracionDSTableAdapters;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +12,14 @@ namespace CapaIntegracion
     {
 
         protected decimal Monto;
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        //private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog Logger = LogManager.GetLogger(System.Environment.MachineName);
 
-        public DepositoRequest(int NoCuenta, decimal monto)
+
+        public DepositoRequest(int NoCuenta, int cedula, decimal monto)
         {
             CuentaOrigen = NoCuenta;
+            Cedula = cedula;
             Monto = monto;
         }
 
@@ -26,7 +30,7 @@ namespace CapaIntegracion
             TblMovimientosTableAdapter tblMovimientos = new TblMovimientosTableAdapter();
 
 
-            log.Info($"MINICORE: Solicitud retiro de {Monto} de cuenta {CuentaOrigen}");
+            Logger.Info($"MINICORE: Solicitud retiro de {Monto} de cuenta {CuentaOrigen}");
 
             decimal balance = Convert.ToDecimal(tblCuentas.GetBalance(CuentaOrigen));
             //AGREGUE COLUMNA A MOVIMIENTOS 0(No se ha enviado a core), 1(si se envio)
@@ -49,17 +53,15 @@ namespace CapaIntegracion
         {
             try
             {
-                //CapaIntegracion.calc.CalculatorSoapClient calculatorSoapClient = new CapaIntegracion.calc.CalculatorSoapClient();
                 CoreServices.WebServicesCoreSoapClient coreSoap = new CoreServices.WebServicesCoreSoapClient();
-                //webmethod del core
-                DateTime date = DateTime.Now;
-                log.Info($"Deposito de {Monto} a la cuenta {CuentaOrigen} a las {date}, realizado ");
-                DepositoResponse depositoResponse = new DepositoResponse(date, 0, "Deposito Realizado");
+                var response = coreSoap.Depositar("Cesar", "11111111111", "1000025", "2000");
+                Logger.Info($"Deposito de {Monto} a la cuenta {CuentaOrigen} realizado");
+                DepositoResponse depositoResponse = new DepositoResponse(DateTime.Now, 0, "Deposito Realizado");
                 return depositoResponse;
             }
             catch (WebException e)
             {
-                log.Info($"Core no disponible, utilizando base de datos local {e}");
+                Logger.Info($"Core no disponible, utilizando base de datos local {e}");
                 //RealizarRetiro();
                 bool x = DepositoLocal(); //depende del mensaje de error
                 string message = "x"; //depende del mensaje de error
@@ -67,14 +69,14 @@ namespace CapaIntegracion
                 {
                     //DateTime date = DateTime.Now;
                     //log.Info($"Retiro de {Monto} de la cuenta {CuentaOrigen} a las {date}, realizado ");(LA HORA ES INNECESARIA LOG4NET LA COLOCA POR DEFAULT)
-                    log.Info($"MINICORE: Deposito realizado de {Monto} de cuenta {CuentaOrigen}");
+                    Logger.Info($"MINICORE: Deposito realizado de {Monto} de cuenta {CuentaOrigen}");
                     DepositoResponse depositoResponse = new DepositoResponse(DateTime.Now, 0, "Retiro Realizado");
                     return depositoResponse;
                 }
                 else
                 {
                     //DateTime date = DateTime.Now;
-                    log.Info($"MINI: Deposito FALLIDO de {Monto} de cuenta {CuentaOrigen}");
+                    Logger.Info($"MINI: Deposito FALLIDO de {Monto} de cuenta {CuentaOrigen}");
                     //log.Info($"Retiro de {Monto} de la cuenta {CuentaOrigen}, no ha podido realizarse. Razon: {message}");
                     DepositoResponse depositoResponse = new DepositoResponse(DateTime.Now, 1, $"Retiro FALLIDO. Razon: {message}"); //RealizarDeposito();
                     return depositoResponse;
