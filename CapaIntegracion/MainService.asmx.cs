@@ -22,28 +22,28 @@ namespace CapaIntegracion
 
 
         [WebMethod(MessageName = "BalanceMethod")]
-        public BalanceResponse Balance(int noCuenta, int cedula)
+        public BalanceResponse Balance(int noCuenta, string cedula)
         {
             BalanceRequest balanceRequest = new BalanceRequest(noCuenta, cedula);
             return balanceRequest.Balance();
         }
 
         [WebMethod(MessageName = "RetiroMethod")]
-        public RetiroResponse Retiro(int noCuenta, int cedula, decimal Monto)
+        public RetiroResponse Retiro(int noCuenta, string cedula, decimal Monto)
         {
             RetiroRequest retiroRequest = new RetiroRequest(noCuenta, cedula, Monto);
             return retiroRequest.Retiro();
         }
 
         [WebMethod(MessageName = "DepositoMethod")]
-        public DepositoResponse Deposito(int noCuenta, int cedula, decimal Monto)
+        public DepositoResponse Deposito(int noCuenta, string cedula, decimal Monto)
         {
             DepositoRequest depositoRequest = new DepositoRequest(noCuenta, cedula, Monto);
             return depositoRequest.Deposito();
         }
 
         [WebMethod(MessageName = "TransferenciaMethod")]
-        public TransferenciaResponse Transferencia(int cuentaOrigen, int cedula, decimal monto, string bancoDestino, int cuentaDestino, int cedulaDestino)
+        public TransferenciaResponse Transferencia(int cuentaOrigen, string cedula, decimal monto, string bancoDestino, int cuentaDestino, string cedulaDestino)
         {
             TransferenciaRequest transferenciaRequest = new TransferenciaRequest(cuentaOrigen, cedula, monto, bancoDestino, cuentaDestino, cedulaDestino);
             return transferenciaRequest.Transferencia();

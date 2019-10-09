@@ -14,7 +14,7 @@ namespace CapaIntegracion
     
         protected decimal Monto;
         private static readonly ILog Logger = LogManager.GetLogger(System.Environment.MachineName);
-        public RetiroRequest(int NoCuenta, int cedula, decimal monto)
+        public RetiroRequest(int NoCuenta, string cedula, decimal monto)
         {
             CuentaOrigen = NoCuenta;
             Cedula = cedula;
@@ -24,7 +24,6 @@ namespace CapaIntegracion
         
         public bool RealizarRetiroLocal()
         {
-            TblClientesTableAdapter tblClientes = new TblClientesTableAdapter(); 
             TblCuentasTableAdapter tblCuentas = new TblCuentasTableAdapter();
             TblMovimientosTableAdapter tblMovimientos = new TblMovimientosTableAdapter();
 
@@ -38,7 +37,8 @@ namespace CapaIntegracion
                     //AGREGUE COLUMNA A MOVIMIENTOS 0(No se ha enviado a core), 1(si se envio)
                     tblMovimientos.Insert(CuentaOrigen, Monto, DateTime.Now, "Retiro", null, 0);
                     balance -= Monto;
-                    tblCuentas.NuevoMovimiento(balance, DateTime.Now, CuentaOrigen);
+                    tblCuentas.updateBalance(balance, DateTime.Now, CuentaOrigen);
+                    
                     return true;
                 }
                 else

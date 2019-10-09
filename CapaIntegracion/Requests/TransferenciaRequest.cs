@@ -10,13 +10,13 @@ namespace CapaIntegracion
 {
     public class TransferenciaRequest : RequestHeader
     {
-        protected string BancoDestino;
-        protected int CuentaDestino;
-        protected int CedulaDestino;
-        protected decimal Monto;
+        public string BancoDestino;
+        public int CuentaDestino;
+        public string CedulaDestino;
+        public decimal Monto;
 
         private static readonly ILog Logger = LogManager.GetLogger(System.Environment.MachineName);
-        public TransferenciaRequest(int cuentaOrigen, int cedula, decimal monto, string bancoDestino, int cuentaDestino, int cedulaDestino)
+        public TransferenciaRequest(int cuentaOrigen, string cedula, decimal monto, string bancoDestino, int cuentaDestino, string cedulaDestino)
         {
             CuentaOrigen = cuentaOrigen;
             Cedula = cedula;
@@ -29,7 +29,6 @@ namespace CapaIntegracion
 
         public bool TransferenciaLocal()
         {
-            TblClientesTableAdapter tblClientes = new TblClientesTableAdapter(); 
             TblCuentasTableAdapter tblCuentas = new TblCuentasTableAdapter();
             TblMovimientosTableAdapter tblMovimientos = new TblMovimientosTableAdapter();
 
@@ -42,10 +41,12 @@ namespace CapaIntegracion
                     //AGREGUE COLUMNA A MOVIMIENTOS 0(No se ha enviado a core), 1(si se envio)
                     tblMovimientos.Insert(CuentaOrigen, Monto, DateTime.Now, "transferencia", CuentaDestino, 0);
                     balance -= Monto;
-                    tblCuentas.NuevoMovimiento(balance, DateTime.Now, CuentaOrigen);
+                    tblCuentas.updateBalance(balance, DateTime.Now, CuentaOrigen);
+                    
                     decimal balanceDestino = Convert.ToDecimal(tblCuentas.GetBalance(CuentaDestino));
                     balanceDestino += Monto;
-                    tblCuentas.NuevoMovimiento(balanceDestino, DateTime.Now, CuentaDestino);
+                    tblCuentas.updateBalance(balanceDestino, DateTime.Now, CuentaDestino);
+                  
 
                     return true;
 

@@ -13,8 +13,8 @@ namespace CapaIntegracion
         
         public static void Hello()
         {
-            DepositoRequest depositoRequest = new DepositoRequest(0, 0, 0);
-            depositoRequest.Deposito();
+            //DepositoRequest depositoRequest = new DepositoRequest(0, 0, 0);
+            //depositoRequest.Deposito();
         }
     }
 

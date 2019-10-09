@@ -15,7 +15,7 @@ namespace CapaIntegracion
         private static readonly ILog Logger = LogManager.GetLogger(System.Environment.MachineName);
 
 
-        public DepositoRequest(int NoCuenta, int cedula, decimal monto)
+        public DepositoRequest(int NoCuenta, string cedula, decimal monto)
         {
             CuentaOrigen = NoCuenta;
             Cedula = cedula;
@@ -35,7 +35,7 @@ namespace CapaIntegracion
                 //AGREGUE COLUMNA A MOVIMIENTOS 0(No se ha enviado a core), 1(si se envio)
                 tblMovimientos.Insert(CuentaOrigen, Monto, DateTime.Now, "Deposito", null, 0);
                 balance += Monto;
-                tblCuentas.NuevoMovimiento(balance, DateTime.Now, CuentaOrigen);
+                tblCuentas.updateBalance(balance, DateTime.Now, CuentaOrigen);
                 return true;
             }
             else
@@ -49,16 +49,19 @@ namespace CapaIntegracion
             TblMovimientosTableAdapter tblMovimientos = new TblMovimientosTableAdapter();
             try
             {
+                //tblCuentas.Insert(CuentaOrigen, "ahorro", Cedula, 0, DateTime.Now, DateTime.Now);
                 CoreServices.WebServicesCoreSoapClient coreSoap = new CoreServices.WebServicesCoreSoapClient();
-                var response = coreSoap.Depositar(Cedula.ToString(),CuentaOrigen.ToString(), Monto);
+                var response = coreSoap.Depositar(Cedula, CuentaOrigen.ToString(), Monto);
                 //VALIDAR ES DONDE ESTA 0 SI PASO, OTRO NUMERO SI NO
                 if (response.validar == 0)
                 {
                     //ACTUALIZANDO MI BASE DE DATOS
-                    tblMovimientos.Insert(CuentaOrigen, Monto, DateTime.Now, "Deposito", CuentaOrigen, 1);
-                    tblCuentas.NuevoMovimiento(Convert.ToDecimal(tblCuentas.GetBalance(CuentaOrigen)) + Monto, DateTime.Now, CuentaOrigen);
+                    tblMovimientos.Insert(CuentaOrigen, Monto, DateTime.Now, "Deposito", null, 1);
+                    //tblCuentas.NuevoMovimiento(tblCuentas.GetBalance(CuentaOrigen) + Monto, CuentaOrigen);
+                    tblCuentas.updateBalance(tblCuentas.GetBalance(CuentaOrigen) + Monto, DateTime.Now, CuentaOrigen);
                     Logger.Info($"Deposito de {Monto} a la cuenta {CuentaOrigen} realizado");
                     DepositoResponse depositoResponse = new DepositoResponse(DateTime.Now, response.validar, response.Mensaje);
+                    //DepositoResponse depositoResponse = new DepositoResponse(DateTime.Now, 0, "BLA");
                     return depositoResponse;
                 }
                 else

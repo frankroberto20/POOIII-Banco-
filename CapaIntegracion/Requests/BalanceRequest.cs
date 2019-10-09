@@ -12,7 +12,7 @@ namespace CapaIntegracion
     {
         private static readonly ILog Logger = LogManager.GetLogger(System.Environment.MachineName);
 
-        public BalanceRequest(int NoCuenta, int cedula)
+        public BalanceRequest(int NoCuenta, string cedula)
         {
             CuentaOrigen = NoCuenta;
             Cedula = cedula;
@@ -20,11 +20,10 @@ namespace CapaIntegracion
 
         public decimal BalanceLocal()
         {
-            TblClientesTableAdapter tblClientes = new TblClientesTableAdapter(); 
             TblCuentasTableAdapter tblCuentas = new TblCuentasTableAdapter();
 
-                    decimal balance = Convert.ToDecimal(tblCuentas.GetBalance(CuentaOrigen));
-                    return balance;
+            decimal balance = Convert.ToDecimal(tblCuentas.GetBalance(CuentaOrigen));
+            return balance;
         }
 
         public BalanceResponse Balance()
@@ -32,18 +31,27 @@ namespace CapaIntegracion
 
             try
             {
-                decimal balance = 0;
                 CoreServices.WebServicesCoreSoapClient coreSoap = new CoreServices.WebServicesCoreSoapClient();
                 var response = coreSoap.Consulta_de_balance(Cedula.ToString(), CuentaOrigen.ToString());
-                Logger.Info($"Chequeo de balance a cuenta {CuentaOrigen} realizado");
-                BalanceResponse balanceResponse = new BalanceResponse(DateTime.Now, 0, "Success", balance);
-                return balanceResponse;
+                if (response.validar == 0)
+                {
+                    Logger.Info($"Chequeo de balance a cuenta {CuentaOrigen} realizado");
+                    BalanceResponse balanceResponse = new BalanceResponse(DateTime.Now, response.validar, "Success", response.Monto);
+                    return balanceResponse;
+                }
+                else
+                {
+                    Logger.Info($"Chequeo FALLIDO de balance a cuenta {CuentaOrigen}");
+                    BalanceResponse balanceResponse = new BalanceResponse(DateTime.Now, response.validar, response.Mensaje, response.Monto);
+                    return balanceResponse;
+                }
+                
             }
             catch (WebException e)
             {
                 TblCuentasTableAdapter tblCuentas = new TblCuentasTableAdapter();
-                Logger.Info($"Core no disponible, utilizando base de datos local {e}");
-                if (Cedula == Convert.ToInt32(tblCuentas.GetTitular(CuentaOrigen)) && Convert.ToBoolean(tblCuentas.exists(CuentaOrigen)))
+                Logger.Info($"Core no disponible, utilizando base de datos local {e.Message}");
+                if (Cedula == tblCuentas.GetTitular(CuentaOrigen) && Convert.ToBoolean(tblCuentas.exists(CuentaOrigen)))
                 {
                     decimal balance = BalanceLocal(); //ConsultarBalance();
                     Logger.Info($"MINICORE: Chequeo de balance a cuenta {CuentaOrigen} realizado");

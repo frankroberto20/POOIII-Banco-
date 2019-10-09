@@ -8,7 +8,7 @@ namespace CapaIntegracion
     public class RequestHeader
     {
         public int CuentaOrigen;
-        public int Cedula;
+        public string Cedula;
         public DateTime dateTime;
 
         public RequestHeader()
