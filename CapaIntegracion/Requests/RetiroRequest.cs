@@ -74,7 +74,7 @@ namespace MainServ
                 log.Info($"Core no disponible, utilizando base de datos local {e}");
                 //RealizarRetiro();
                 bool x = RealizarRetiroLocal(); //depende del mensaje de error
-                //string message = "x"; //depende del mensaje de error
+                string message = "x"; //depende del mensaje de error
                 if (x)
                 {
                     //DateTime date = DateTime.Now;

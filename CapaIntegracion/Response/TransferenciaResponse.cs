@@ -13,5 +13,9 @@ namespace MainServ
             ResponseCode = responseCode;
             ResponseMessage = responseMessage;
         }
+        public TransferenciaResponse()
+        {
+
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaIntegracion.IntegracionDSTableAdapters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,7 +17,10 @@ namespace CapaIntegracion.Pruebas
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            ClasePrueba.Hello();
+            TblClientesTableAdapter tblClientes = new TblClientesTableAdapter();
+            tblClientes.Insert("Cesar", "Lopez", "8096093146", "40208672472", "M", 19, DateTime.Now);
+            
+
         }
     }
 }

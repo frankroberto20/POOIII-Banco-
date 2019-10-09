@@ -106,7 +106,7 @@ namespace MainServ
             }
             else
             {
-                TransferenciaResponse transferenciaResponse = new TransferenciaResponse(DateTime.Now, 1, $"Transferencia no Realizada. Razon: {message}");
+                TransferenciaResponse transferenciaResponse = new TransferenciaResponse(DateTime.Now, 1, $"Transferencia no Realizada.");
                 return transferenciaResponse;
             }
             

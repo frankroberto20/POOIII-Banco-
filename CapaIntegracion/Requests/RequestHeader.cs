@@ -7,9 +7,9 @@ namespace MainServ
 {
     public class RequestHeader
     {
-        protected int CuentaOrigen;
-        protected int Cedula;
-        protected DateTime dateTime;
+        public int CuentaOrigen;
+        public int Cedula;
+        public DateTime dateTime;
 
         public RequestHeader()
         {

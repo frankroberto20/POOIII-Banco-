@@ -7,9 +7,9 @@ namespace MainServ
 {
     public class ResponseHeader
     {
-        protected DateTime dateTime;
-        protected int ResponseCode;
-        protected string ResponseMessage;
+        public DateTime dateTime;
+        public int ResponseCode;
+        public string ResponseMessage;
 
         public ResponseHeader()
         {
