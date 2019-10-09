@@ -12,7 +12,6 @@ namespace CapaIntegracion
     {
 
         protected decimal Monto;
-        //private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private static readonly ILog Logger = LogManager.GetLogger(System.Environment.MachineName);
 
 
@@ -25,18 +24,16 @@ namespace CapaIntegracion
 
         public bool DepositoLocal()
         {
-            TblClientesTableAdapter tblClientes = new TblClientesTableAdapter(); //No USA VALIDACION DE CEDULA
             TblCuentasTableAdapter tblCuentas = new TblCuentasTableAdapter();
             TblMovimientosTableAdapter tblMovimientos = new TblMovimientosTableAdapter();
 
+            Logger.Info($"MINICORE: Solicitud deposito de {Monto} de cuenta {CuentaOrigen}");
 
-            Logger.Info($"MINICORE: Solicitud retiro de {Monto} de cuenta {CuentaOrigen}");
-
-            if (tblCuentas.exists(CuentaOrigen) == 1)
+            if (Convert.ToBoolean(tblCuentas.exists(CuentaOrigen)))
             {
                 decimal balance = Convert.ToDecimal(tblCuentas.GetBalance(CuentaOrigen));
                 //AGREGUE COLUMNA A MOVIMIENTOS 0(No se ha enviado a core), 1(si se envio)
-                tblMovimientos.Insert(CuentaOrigen, Monto, DateTime.Now, "Retiro", null, 0);
+                tblMovimientos.Insert(CuentaOrigen, Monto, DateTime.Now, "Deposito", null, 0);
                 balance += Monto;
                 tblCuentas.NuevoMovimiento(balance, DateTime.Now, CuentaOrigen);
                 return true;
@@ -48,15 +45,28 @@ namespace CapaIntegracion
 
         public DepositoResponse Deposito()
         {
+            TblCuentasTableAdapter tblCuentas = new TblCuentasTableAdapter();
+            TblMovimientosTableAdapter tblMovimientos = new TblMovimientosTableAdapter();
             try
             {
-                //TblCuentasTableAdapter tblCuentas = new TblCuentasTableAdapter();
-                //tblCuentas.Insert(2, "Ahorro", 402, 0, DateTime.Now, DateTime.Now);
                 CoreServices.WebServicesCoreSoapClient coreSoap = new CoreServices.WebServicesCoreSoapClient();
-                var response = coreSoap.Depositar("Cesar",Cedula.ToString(),CuentaOrigen.ToString(), Monto.ToString());
-                Logger.Info($"Deposito de {Monto} a la cuenta {CuentaOrigen} realizado");
-                DepositoResponse depositoResponse = new DepositoResponse(DateTime.Now, 0, "Deposito Realizado");
-                return depositoResponse;
+                var response = coreSoap.Depositar(Cedula.ToString(),CuentaOrigen.ToString(), Monto);
+                //VALIDAR ES DONDE ESTA 0 SI PASO, OTRO NUMERO SI NO
+                if (response.validar == 0)
+                {
+                    //ACTUALIZANDO MI BASE DE DATOS
+                    tblMovimientos.Insert(CuentaOrigen, Monto, DateTime.Now, "Deposito", CuentaOrigen, 1);
+                    tblCuentas.NuevoMovimiento(Convert.ToDecimal(tblCuentas.GetBalance(CuentaOrigen)) + Monto, DateTime.Now, CuentaOrigen);
+                    Logger.Info($"Deposito de {Monto} a la cuenta {CuentaOrigen} realizado");
+                    DepositoResponse depositoResponse = new DepositoResponse(DateTime.Now, response.validar, response.Mensaje);
+                    return depositoResponse;
+                }
+                else
+                {
+                    Logger.Info($"Deposito FALLIDO de {Monto} a la cuenta {CuentaOrigen}");
+                    DepositoResponse depositoResponse = new DepositoResponse(DateTime.Now, response.validar, response.Mensaje);
+                    return depositoResponse;
+                }
             }
             catch (WebException e)
             {

@@ -29,9 +29,9 @@ namespace CapaIntegracion
         }
 
         [WebMethod(MessageName = "RetiroMethod")]
-        public RetiroResponse Retiro(int noCuenta, decimal Monto)
+        public RetiroResponse Retiro(int noCuenta, int cedula, decimal Monto)
         {
-            RetiroRequest retiroRequest = new RetiroRequest(noCuenta, Monto);
+            RetiroRequest retiroRequest = new RetiroRequest(noCuenta, cedula, Monto);
             return retiroRequest.Retiro();
         }
 

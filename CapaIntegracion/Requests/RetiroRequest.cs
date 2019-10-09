@@ -14,9 +14,10 @@ namespace CapaIntegracion
     
         protected decimal Monto;
         private static readonly ILog Logger = LogManager.GetLogger(System.Environment.MachineName);
-        public RetiroRequest(int NoCuenta, decimal monto)
+        public RetiroRequest(int NoCuenta, int cedula, decimal monto)
         {
             CuentaOrigen = NoCuenta;
+            Cedula = cedula;
             Monto = monto;
         }
 
@@ -52,7 +53,8 @@ namespace CapaIntegracion
         {
             try
             {
-                //webmethod del core
+                CoreServices.WebServicesCoreSoapClient coreSoap = new CoreServices.WebServicesCoreSoapClient();
+                coreSoap.Retirar(Cedula.ToString(), CuentaOrigen.ToString(), Monto);
                 bool x = true; //webmethod
                 string message = "x"; //webmethod
                 if (x)

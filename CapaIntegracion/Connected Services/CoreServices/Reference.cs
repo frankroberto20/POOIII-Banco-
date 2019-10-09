@@ -13,50 +13,50 @@ namespace CapaIntegracion.CoreServices {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://WebServicesCore.org/", ConfigurationName="CoreServices.WebServicesCoreSoap")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://WebServicesCore.core/", ConfigurationName="CoreServices.WebServicesCoreSoap")]
     public interface WebServicesCoreSoap {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.org/Consulta_de_balance", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.core/Consulta_de_balance", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        CapaIntegracion.CoreServices.Response Consulta_de_balance(string Nombre_completo_solicitante, string Cedula, string Cuenta);
+        CapaIntegracion.CoreServices.Response Consulta_de_balance(string Cedula, string Cuenta);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.org/Consulta_de_balance", ReplyAction="*")]
-        System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> Consulta_de_balanceAsync(string Nombre_completo_solicitante, string Cedula, string Cuenta);
+        [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.core/Consulta_de_balance", ReplyAction="*")]
+        System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> Consulta_de_balanceAsync(string Cedula, string Cuenta);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.org/Depositar", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.core/Depositar", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        CapaIntegracion.CoreServices.Response Depositar(string Nombre_completo_solicitante, string Cedula, string Cuenta, string Monto);
+        CapaIntegracion.CoreServices.Response Depositar(string Cedula, string Cuenta, decimal Monto);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.org/Depositar", ReplyAction="*")]
-        System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> DepositarAsync(string Nombre_completo_solicitante, string Cedula, string Cuenta, string Monto);
+        [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.core/Depositar", ReplyAction="*")]
+        System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> DepositarAsync(string Cedula, string Cuenta, decimal Monto);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.org/Mostrar_cuentas", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.core/Mostrar_cuentas", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        CapaIntegracion.CoreServices.Response Mostrar_cuentas(string Nombre_completo_solicitante, string Cedula, string Cuenta);
+        CapaIntegracion.CoreServices.Response Mostrar_cuentas(string Cedula, string Cuenta);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.org/Mostrar_cuentas", ReplyAction="*")]
-        System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> Mostrar_cuentasAsync(string Nombre_completo_solicitante, string Cedula, string Cuenta);
+        [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.core/Mostrar_cuentas", ReplyAction="*")]
+        System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> Mostrar_cuentasAsync(string Cedula, string Cuenta);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.org/Mostrar_cuentas_del_cliente", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.core/Mostrar_cuentas_del_cliente", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        CapaIntegracion.CoreServices.Response Mostrar_cuentas_del_cliente(string Nombre_completo_solicitante, string Cedula, int ID_Cliente);
+        CapaIntegracion.CoreServices.Response Mostrar_cuentas_del_cliente(string Cedula);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.org/Mostrar_cuentas_del_cliente", ReplyAction="*")]
-        System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> Mostrar_cuentas_del_clienteAsync(string Nombre_completo_solicitante, string Cedula, int ID_Cliente);
+        [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.core/Mostrar_cuentas_del_cliente", ReplyAction="*")]
+        System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> Mostrar_cuentas_del_clienteAsync(string Cedula);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.org/Movimiento_cuentas", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.core/Movimiento_cuentas", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        CapaIntegracion.CoreServices.Response Movimiento_cuentas(string Nombre_completo_Solicitante, string Cedula, string Cuenta);
+        CapaIntegracion.CoreServices.Response Movimiento_cuentas(string Cedula, string Cuenta);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.org/Movimiento_cuentas", ReplyAction="*")]
-        System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> Movimiento_cuentasAsync(string Nombre_completo_Solicitante, string Cedula, string Cuenta);
+        [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.core/Movimiento_cuentas", ReplyAction="*")]
+        System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> Movimiento_cuentasAsync(string Cedula, string Cuenta);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.org/Retirar", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.core/Retirar", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        CapaIntegracion.CoreServices.Response Retirar(string Nombre_completo_solicitante, string Cedula, string Cuenta, string Monto);
+        CapaIntegracion.CoreServices.Response Retirar(string Cedula, string Cuenta, decimal Monto);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.org/Retirar", ReplyAction="*")]
-        System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> RetirarAsync(string Nombre_completo_solicitante, string Cedula, string Cuenta, string Monto);
+        [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.core/Retirar", ReplyAction="*")]
+        System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> RetirarAsync(string Cedula, string Cuenta, decimal Monto);
     }
     
     /// <remarks/>
@@ -64,7 +64,7 @@ namespace CapaIntegracion.CoreServices {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://WebServicesCore.org/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://WebServicesCore.core/")]
     public partial class Response : object, System.ComponentModel.INotifyPropertyChanged {
         
         private string nombre_completo_solicitanteField;
@@ -74,6 +74,8 @@ namespace CapaIntegracion.CoreServices {
         private string mensajeField;
         
         private decimal montoField;
+        
+        private int validarField;
         
         private System.Data.DataSet dataSetField;
         
@@ -127,6 +129,18 @@ namespace CapaIntegracion.CoreServices {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public int validar {
+            get {
+                return this.validarField;
+            }
+            set {
+                this.validarField = value;
+                this.RaisePropertyChanged("validar");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
         public System.Data.DataSet DataSet {
             get {
                 return this.dataSetField;
@@ -174,52 +188,52 @@ namespace CapaIntegracion.CoreServices {
                 base(binding, remoteAddress) {
         }
         
-        public CapaIntegracion.CoreServices.Response Consulta_de_balance(string Nombre_completo_solicitante, string Cedula, string Cuenta) {
-            return base.Channel.Consulta_de_balance(Nombre_completo_solicitante, Cedula, Cuenta);
+        public CapaIntegracion.CoreServices.Response Consulta_de_balance(string Cedula, string Cuenta) {
+            return base.Channel.Consulta_de_balance(Cedula, Cuenta);
         }
         
-        public System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> Consulta_de_balanceAsync(string Nombre_completo_solicitante, string Cedula, string Cuenta) {
-            return base.Channel.Consulta_de_balanceAsync(Nombre_completo_solicitante, Cedula, Cuenta);
+        public System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> Consulta_de_balanceAsync(string Cedula, string Cuenta) {
+            return base.Channel.Consulta_de_balanceAsync(Cedula, Cuenta);
         }
         
-        public CapaIntegracion.CoreServices.Response Depositar(string Nombre_completo_solicitante, string Cedula, string Cuenta, string Monto) {
-            return base.Channel.Depositar(Nombre_completo_solicitante, Cedula, Cuenta, Monto);
+        public CapaIntegracion.CoreServices.Response Depositar(string Cedula, string Cuenta, decimal Monto) {
+            return base.Channel.Depositar(Cedula, Cuenta, Monto);
         }
         
-        public System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> DepositarAsync(string Nombre_completo_solicitante, string Cedula, string Cuenta, string Monto) {
-            return base.Channel.DepositarAsync(Nombre_completo_solicitante, Cedula, Cuenta, Monto);
+        public System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> DepositarAsync(string Cedula, string Cuenta, decimal Monto) {
+            return base.Channel.DepositarAsync(Cedula, Cuenta, Monto);
         }
         
-        public CapaIntegracion.CoreServices.Response Mostrar_cuentas(string Nombre_completo_solicitante, string Cedula, string Cuenta) {
-            return base.Channel.Mostrar_cuentas(Nombre_completo_solicitante, Cedula, Cuenta);
+        public CapaIntegracion.CoreServices.Response Mostrar_cuentas(string Cedula, string Cuenta) {
+            return base.Channel.Mostrar_cuentas(Cedula, Cuenta);
         }
         
-        public System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> Mostrar_cuentasAsync(string Nombre_completo_solicitante, string Cedula, string Cuenta) {
-            return base.Channel.Mostrar_cuentasAsync(Nombre_completo_solicitante, Cedula, Cuenta);
+        public System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> Mostrar_cuentasAsync(string Cedula, string Cuenta) {
+            return base.Channel.Mostrar_cuentasAsync(Cedula, Cuenta);
         }
         
-        public CapaIntegracion.CoreServices.Response Mostrar_cuentas_del_cliente(string Nombre_completo_solicitante, string Cedula, int ID_Cliente) {
-            return base.Channel.Mostrar_cuentas_del_cliente(Nombre_completo_solicitante, Cedula, ID_Cliente);
+        public CapaIntegracion.CoreServices.Response Mostrar_cuentas_del_cliente(string Cedula) {
+            return base.Channel.Mostrar_cuentas_del_cliente(Cedula);
         }
         
-        public System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> Mostrar_cuentas_del_clienteAsync(string Nombre_completo_solicitante, string Cedula, int ID_Cliente) {
-            return base.Channel.Mostrar_cuentas_del_clienteAsync(Nombre_completo_solicitante, Cedula, ID_Cliente);
+        public System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> Mostrar_cuentas_del_clienteAsync(string Cedula) {
+            return base.Channel.Mostrar_cuentas_del_clienteAsync(Cedula);
         }
         
-        public CapaIntegracion.CoreServices.Response Movimiento_cuentas(string Nombre_completo_Solicitante, string Cedula, string Cuenta) {
-            return base.Channel.Movimiento_cuentas(Nombre_completo_Solicitante, Cedula, Cuenta);
+        public CapaIntegracion.CoreServices.Response Movimiento_cuentas(string Cedula, string Cuenta) {
+            return base.Channel.Movimiento_cuentas(Cedula, Cuenta);
         }
         
-        public System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> Movimiento_cuentasAsync(string Nombre_completo_Solicitante, string Cedula, string Cuenta) {
-            return base.Channel.Movimiento_cuentasAsync(Nombre_completo_Solicitante, Cedula, Cuenta);
+        public System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> Movimiento_cuentasAsync(string Cedula, string Cuenta) {
+            return base.Channel.Movimiento_cuentasAsync(Cedula, Cuenta);
         }
         
-        public CapaIntegracion.CoreServices.Response Retirar(string Nombre_completo_solicitante, string Cedula, string Cuenta, string Monto) {
-            return base.Channel.Retirar(Nombre_completo_solicitante, Cedula, Cuenta, Monto);
+        public CapaIntegracion.CoreServices.Response Retirar(string Cedula, string Cuenta, decimal Monto) {
+            return base.Channel.Retirar(Cedula, Cuenta, Monto);
         }
         
-        public System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> RetirarAsync(string Nombre_completo_solicitante, string Cedula, string Cuenta, string Monto) {
-            return base.Channel.RetirarAsync(Nombre_completo_solicitante, Cedula, Cuenta, Monto);
+        public System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> RetirarAsync(string Cedula, string Cuenta, decimal Monto) {
+            return base.Channel.RetirarAsync(Cedula, Cuenta, Monto);
         }
     }
 }
