@@ -60,8 +60,8 @@ namespace InternetBanking
                 }
                 else
                 {
-                    row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
-                    row.ToolTip = "Click to select this row.";
+                    //row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+                    //row.ToolTip = "Click to select this row.";
                 }
             }
         }

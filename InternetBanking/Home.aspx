@@ -36,12 +36,12 @@
 
     
     <asp:GridView ID="grdCuentas" runat="server" CssClass="table table-hover" GridLines="None" OnRowDataBound="grdCuentas_RowDataBound" OnSelectedIndexChanged="grdCuentas_SelectedIndexChanged" CellPadding="4" ForeColor="#333333">
-		<AlternatingRowStyle BackColor="White" />
+		<AlternatingRowStyle CssClass="table-hover" />
         <EditRowStyle BackColor="#2461BF" />
         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
         <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
         <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-        <RowStyle BackColor="#EFF3FB" />
+        <RowStyle  CssClass="table-hover"/>
 		<SelectedRowStyle CssClass="table-active" BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
         <SortedAscendingCellStyle BackColor="#F5F7FB" />
         <SortedAscendingHeaderStyle BackColor="#6D95E1" />
@@ -72,12 +72,12 @@
 	</div>
 	<div id="Movimientos" style="padding-top:40px">
 		<asp:GridView ID="grdMovimientos" runat="server" AutoGenerateColumns="true" CssClass="table" GridLines="None">
-			<AlternatingRowStyle BackColor="White" />
+			<AlternatingRowStyle CssClass="table-hover" />
 			<EditRowStyle BackColor="#2461BF" />
 			<FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
 			<HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
 			<PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-			<RowStyle BackColor="#EFF3FB" />
+			<RowStyle CssClass="table-hover" />
 			<SelectedRowStyle CssClass="table-active" BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
 			<SortedAscendingCellStyle BackColor="#F5F7FB" />
 			<SortedAscendingHeaderStyle BackColor="#6D95E1" />
