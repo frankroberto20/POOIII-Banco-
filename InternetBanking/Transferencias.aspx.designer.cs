@@ -13,6 +13,15 @@ namespace InternetBanking {
     public partial class Transferencias {
         
         /// <summary>
+        /// Select1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect Select1;
+        
+        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
@@ -20,15 +29,6 @@ namespace InternetBanking {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
-        /// Select7 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect Select7;
         
         /// <summary>
         /// Select2 control.
@@ -40,15 +40,6 @@ namespace InternetBanking {
         protected global::System.Web.UI.HtmlControls.HtmlSelect Select2;
         
         /// <summary>
-        /// Label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-        
-        /// <summary>
         /// Select3 control.
         /// </summary>
         /// <remarks>
@@ -56,6 +47,15 @@ namespace InternetBanking {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlSelect Select3;
+        
+        /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
         /// txtCuentaDestino control.
@@ -76,15 +76,6 @@ namespace InternetBanking {
         protected global::System.Web.UI.HtmlControls.HtmlSelect Select4;
         
         /// <summary>
-        /// Label3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
-        
-        /// <summary>
         /// Select5 control.
         /// </summary>
         /// <remarks>
@@ -92,6 +83,15 @@ namespace InternetBanking {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlSelect Select5;
+        
+        /// <summary>
+        /// Label3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
         /// Select6 control.
@@ -139,13 +139,13 @@ namespace InternetBanking {
         protected global::System.Web.UI.WebControls.TextBox txtCuentaDestino123;
         
         /// <summary>
-        /// Select1 control.
+        /// Select10 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect Select1;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect Select10;
         
         /// <summary>
         /// txtMonto control.
