@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 
-namespace MainServ
+namespace CapaIntegracion
 {
     public class DepositoRequest : RequestHeader
     {
@@ -43,43 +43,14 @@ namespace MainServ
             //else
             //    return false;
         }
-            /*
-            public void Depositar()
-            {
-                log.Info($"Solicitud de deposito a cuenta {idCuentaSolicitante}");
-                BancoEntities bancoEntities = new BancoEntities();
-                tblCuenta tblCuenta = new tblCuenta();
-                tblMovimiento tblMovimiento = new tblMovimiento();
-                tblResponses tblResponses = new tblResponses();
-                tblResponses.Request = "Solicitud de de deposito a cuenta";
-                tblResponses.Fecha = DateTime.Now;
-                try
-                {
-                    tblMovimiento.Monto___RD_ = monto;
-                    tblMovimiento.Fecha_de_movimiento = DateTime.Now;
-                    tblMovimiento.Tipo = "Deposito";
-                    tblMovimiento.idCuentaSolicitante = idCuentaSolicitante;
-                    bancoEntities.tblMovimientos.Add(tblMovimiento);
 
-                    bancoEntities.Depositar(idCuentaSolicitante, monto);
-                    ResponseDeposito = new ResponseDeposito("Dinero depositado con exito");
-                    tblResponses.Resultado = "Satisfactorio";
-                }
-                catch (Exception e)
-                {
-                    tblResponses.Resultado = "Fallido";
-                    ResponseDeposito = new ResponseDeposito($"No se pudo realizar el deposito. {e.Message}");
-                }
-                bancoEntities.tblResponses.Add(tblResponses);
-                Console.WriteLine(ResponseDeposito.Mensaje);
-                bancoEntities.SaveChanges();
-            }
-            */
 
         public DepositoResponse Deposito()
         {
             try
             {
+                //CapaIntegracion.calc.CalculatorSoapClient calculatorSoapClient = new CapaIntegracion.calc.CalculatorSoapClient();
+                CoreServices.WebServicesCoreSoapClient coreSoap = new CoreServices.WebServicesCoreSoapClient();
                 //webmethod del core
                 DateTime date = DateTime.Now;
                 log.Info($"Deposito de {Monto} a la cuenta {CuentaOrigen} a las {date}, realizado ");

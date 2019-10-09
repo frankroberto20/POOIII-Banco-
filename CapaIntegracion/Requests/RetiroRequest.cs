@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 
-namespace MainServ
+namespace CapaIntegracion
 {
     public class RetiroRequest: RequestHeader
     {

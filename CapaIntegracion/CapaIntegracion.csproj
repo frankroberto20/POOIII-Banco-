@@ -50,6 +50,8 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -68,11 +70,26 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Connected Services\CoreServices\CapaIntegracion.CoreServices.Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\CoreServices\WebServicesCore.disco" />
+    <None Include="Connected Services\CoreServices\configuration91.svcinfo" />
+    <None Include="Connected Services\CoreServices\configuration.svcinfo" />
+    <None Include="Connected Services\CoreServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="MainService.asmx" />
     <Content Include="Pruebas\WebForm1.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\CoreServices\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Requests\BalanceRequest.cs" />
     <Compile Include="Requests\DepositoRequest.cs" />
     <Compile Include="Requests\RetiroRequest.cs" />
@@ -106,6 +123,7 @@
     <Content Include="IntegracionDS.xsc">
       <DependentUpon>IntegracionDS.xsd</DependentUpon>
     </Content>
+    <None Include="Connected Services\CoreServices\WebServicesCore.wsdl" />
     <None Include="IntegracionDS.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -125,6 +143,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\CoreServices\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

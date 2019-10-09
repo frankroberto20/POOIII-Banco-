@@ -6,7 +6,7 @@ using System.Web;
 using CapaIntegracion.IntegracionDSTableAdapters;
 using log4net;
 
-namespace MainServ
+namespace CapaIntegracion
 {
     public class BalanceRequest : RequestHeader
     {

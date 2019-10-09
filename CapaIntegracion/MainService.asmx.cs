@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
-using MainServ;
 
 namespace CapaIntegracion
 {
@@ -26,11 +25,6 @@ namespace CapaIntegracion
             BalanceRequest balanceRequest = new BalanceRequest(noCuenta, cedula);
             return balanceRequest.Balance();
         }
-        //public bool Balance(int no)
-        //{
-        //    RequestHeader rh = new RequestHeader();
-        //    return true;
-        //}
 
         [WebMethod(MessageName = "RetiroMethod")]
         public RetiroResponse Retiro(int noCuenta, decimal Monto)
