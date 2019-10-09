@@ -230,7 +230,12 @@
 				<div id="group_sltMonto" class="form-group" style="display: table-row; padding-top:60px; width:100%">
 					<div style="display:table-cell; padding-top:40px; width:60%">
 						<label for="txtMonto">Monto:</label>
-						<asp:TextBox id="txtMonto" runat="server" class="form-control" placeholder="Monto en pesos dominicanos"/>
+						<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text">RD$</span>
+						</div>
+						<asp:TextBox id="txtMonto" TextMode="Number" runat="server" min="0.01" max="" step="0.01"  class="form-control" placeholder="Monto en pesos dominicanos" Width="300px"/>
+							</div>
 					    <br />
 					</div>
 				</div>
