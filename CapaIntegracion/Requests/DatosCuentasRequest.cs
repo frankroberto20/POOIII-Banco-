@@ -21,7 +21,7 @@ namespace CapaIntegracion
         {
             CoreServices.WebServicesCoreSoapClient coreSoap = new CoreServices.WebServicesCoreSoapClient();
             var datos = coreSoap.Movimiento_cuentas(NoCuenta.ToString(), Cedula);
-            DatosCuentaResponse datosCuentaResponse = new DatosCuentaResponse(datos.Nombre_completo_solicitante, datos.Cedula, datos.Mensaje, datos.Monto, datos.DataSet);
+            DatosCuentaResponse datosCuentaResponse = new DatosCuentaResponse(datos.Nombre_completo_solicitante, datos.Cedula, datos.Mensaje, datos.Monto, datos.DataTable);
             return datosCuentaResponse;
         }
     }

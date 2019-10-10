@@ -62,5 +62,12 @@ namespace CapaIntegracion
             CantCuentasRequest cantCuentasRequest = new CantCuentasRequest(cedula);
             return cantCuentasRequest.CantidadCuentas();
         }
+        [WebMethod(MessageName = "ValidarExistenciaMethod")]
+        public bool ValidarExistencia(string cedula)
+        {
+            CoreServices.WebServicesCoreSoapClient coreSoap = new CoreServices.WebServicesCoreSoapClient();
+            var response = coreSoap.Tiene_cuenta(cedula);
+            return response.tiene_cuenta;
+        }
     }
 }

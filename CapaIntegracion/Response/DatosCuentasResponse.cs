@@ -12,14 +12,18 @@ namespace CapaIntegracion
         protected string Cedula;
         protected string Mensaje;
         protected decimal Monto;
-        protected DataSet DataSet;
-        public DatosCuentaResponse(string nombre, string cedula, string mensaje, decimal monto, DataSet dataSet)
+        protected DataTable DataTable;
+        public DatosCuentaResponse(string nombre, string cedula, string mensaje, decimal monto, DataTable dataTable)
         {
             Nombre = nombre;
             Cedula = cedula;
             Mensaje = mensaje;
             Monto = monto;
-            DataSet = dataSet;
+            DataTable = dataTable;
+        }
+        public DatosCuentaResponse()
+        {
+            
         }
     }
 }

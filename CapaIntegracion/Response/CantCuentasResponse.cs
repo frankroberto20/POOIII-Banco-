@@ -8,10 +8,14 @@ namespace CapaIntegracion
 {
     public class CantCuentasResponse : ResponseHeader
     {
-        protected DataSet Cuentas;
-        public CantCuentasResponse(DataSet cuentas)
+        protected DataTable Cuentas;
+        public CantCuentasResponse(DataTable cuentas)
         {
             Cuentas = cuentas;
+        }
+        public CantCuentasResponse()
+        {
+            
         }
     }
 }

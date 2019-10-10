@@ -46,7 +46,6 @@ namespace CapaIntegracion
                     decimal balanceDestino = Convert.ToDecimal(tblCuentas.GetBalance(CuentaDestino));
                     balanceDestino += Monto;
                     tblCuentas.updateBalance(balanceDestino, DateTime.Now, CuentaDestino);
-                  
 
                     return true;
 
@@ -68,6 +67,7 @@ namespace CapaIntegracion
                 {
                     CoreServices.WebServicesCoreSoapClient coreSoap = new CoreServices.WebServicesCoreSoapClient();
                     var response = coreSoap.Retirar(Cedula, CuentaOrigen.ToString(), Monto); //RETIRO
+                    
 
                     if (response.validar == 0)
                     {

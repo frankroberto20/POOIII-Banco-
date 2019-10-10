@@ -24,14 +24,15 @@
           <s:element minOccurs="0" maxOccurs="1" name="Mensaje" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="Monto" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="validar" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="DataSet">
+          <s:element minOccurs="0" maxOccurs="1" name="DataTable">
             <s:complexType>
               <s:sequence>
-                <s:element ref="s:schema" />
-                <s:any />
+                <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
               </s:sequence>
             </s:complexType>
           </s:element>
+          <s:element minOccurs="1" maxOccurs="1" name="tiene_cuenta" type="s:boolean" />
         </s:sequence>
       </s:complexType>
       <s:element name="Depositar">
@@ -110,6 +111,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Tiene_cuenta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cedula" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Tiene_cuentaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Tiene_cuentaResult" type="tns:Response" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="Consulta_de_balanceSoapIn">
@@ -148,6 +163,12 @@
   <wsdl:message name="RetirarSoapOut">
     <wsdl:part name="parameters" element="tns:RetirarResponse" />
   </wsdl:message>
+  <wsdl:message name="Tiene_cuentaSoapIn">
+    <wsdl:part name="parameters" element="tns:Tiene_cuenta" />
+  </wsdl:message>
+  <wsdl:message name="Tiene_cuentaSoapOut">
+    <wsdl:part name="parameters" element="tns:Tiene_cuentaResponse" />
+  </wsdl:message>
   <wsdl:portType name="WebServicesCoreSoap">
     <wsdl:operation name="Consulta_de_balance">
       <wsdl:input message="tns:Consulta_de_balanceSoapIn" />
@@ -172,6 +193,10 @@
     <wsdl:operation name="Retirar">
       <wsdl:input message="tns:RetirarSoapIn" />
       <wsdl:output message="tns:RetirarSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Tiene_cuenta">
+      <wsdl:input message="tns:Tiene_cuentaSoapIn" />
+      <wsdl:output message="tns:Tiene_cuentaSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebServicesCoreSoap" type="tns:WebServicesCoreSoap">
@@ -230,6 +255,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Tiene_cuenta">
+      <soap:operation soapAction="http://WebServicesCore.core/Tiene_cuenta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServicesCoreSoap12" type="tns:WebServicesCoreSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -280,6 +314,15 @@
     </wsdl:operation>
     <wsdl:operation name="Retirar">
       <soap12:operation soapAction="http://WebServicesCore.core/Retirar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Tiene_cuenta">
+      <soap12:operation soapAction="http://WebServicesCore.core/Tiene_cuenta" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

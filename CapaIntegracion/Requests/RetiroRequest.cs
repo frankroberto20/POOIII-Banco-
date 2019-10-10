@@ -57,7 +57,7 @@ namespace CapaIntegracion
                 if (response.validar == 0)
                 {
                     //ACTUALIZANDO MI BASE DE DATOS
-                    tblMovimientos.Insert(CuentaOrigen, Monto, DateTime.Now, "retiro", null, 1);
+                    tblMovimientos.Insert(CuentaOrigen, Monto, DateTime.Now, "Retiro", null, 1);
                     tblCuentas.updateBalance(tblCuentas.GetBalance(CuentaOrigen) - Monto, DateTime.Now, CuentaOrigen);
                     Logger.Info($"Retiro de {Monto} de la cuenta {CuentaOrigen} realizado ");
                     RetiroResponse retiroResponse = new RetiroResponse(DateTime.Now, 0, "Retiro Realizado");

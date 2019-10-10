@@ -57,6 +57,13 @@ namespace CapaIntegracion.CoreServices {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.core/Retirar", ReplyAction="*")]
         System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> RetirarAsync(string Cedula, string Cuenta, decimal Monto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.core/Tiene_cuenta", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        CapaIntegracion.CoreServices.Response Tiene_cuenta(string cedula);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://WebServicesCore.core/Tiene_cuenta", ReplyAction="*")]
+        System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> Tiene_cuentaAsync(string cedula);
     }
     
     /// <remarks/>
@@ -77,7 +84,9 @@ namespace CapaIntegracion.CoreServices {
         
         private int validarField;
         
-        private System.Data.DataSet dataSetField;
+        private System.Data.DataTable dataTableField;
+        
+        private bool tiene_cuentaField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
@@ -141,13 +150,25 @@ namespace CapaIntegracion.CoreServices {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=5)]
-        public System.Data.DataSet DataSet {
+        public System.Data.DataTable DataTable {
             get {
-                return this.dataSetField;
+                return this.dataTableField;
             }
             set {
-                this.dataSetField = value;
-                this.RaisePropertyChanged("DataSet");
+                this.dataTableField = value;
+                this.RaisePropertyChanged("DataTable");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public bool tiene_cuenta {
+            get {
+                return this.tiene_cuentaField;
+            }
+            set {
+                this.tiene_cuentaField = value;
+                this.RaisePropertyChanged("tiene_cuenta");
             }
         }
         
@@ -234,6 +255,14 @@ namespace CapaIntegracion.CoreServices {
         
         public System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> RetirarAsync(string Cedula, string Cuenta, decimal Monto) {
             return base.Channel.RetirarAsync(Cedula, Cuenta, Monto);
+        }
+        
+        public CapaIntegracion.CoreServices.Response Tiene_cuenta(string cedula) {
+            return base.Channel.Tiene_cuenta(cedula);
+        }
+        
+        public System.Threading.Tasks.Task<CapaIntegracion.CoreServices.Response> Tiene_cuentaAsync(string cedula) {
+            return base.Channel.Tiene_cuentaAsync(cedula);
         }
     }
 }

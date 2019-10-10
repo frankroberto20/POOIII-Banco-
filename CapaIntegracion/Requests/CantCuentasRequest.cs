@@ -19,7 +19,7 @@ namespace CapaIntegracion
             var Objeto = coreSoap.Mostrar_cuentas_del_cliente(Cedula); //webmethod(cedula);
             try
             {
-                Cuentas = Objeto.DataSet;
+                Cuentas = Objeto.DataTable;
                 ResponseCode = 00;
             }
             catch (Exception e)
