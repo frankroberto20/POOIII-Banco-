@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://WebServicesCore.core/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://WebServicesCore.core/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://WebServicesCore.core/">
+      <s:element name="Consulta_de_balance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Cedula" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cuenta" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Consulta_de_balanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Consulta_de_balanceResult" type="tns:Response" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Response">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre_completo_solicitante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cedula" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mensaje" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Monto" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="validar" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DataTable">
+            <s:complexType>
+              <s:sequence>
+                <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+          <s:element minOccurs="1" maxOccurs="1" name="tiene_cuenta" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Depositar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Cedula" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cuenta" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Monto" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DepositarResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DepositarResult" type="tns:Response" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Mostrar_cuentas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Cedula" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cuenta" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Mostrar_cuentasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Mostrar_cuentasResult" type="tns:Response" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Mostrar_cuentas_del_cliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Cedula" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Mostrar_cuentas_del_clienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Mostrar_cuentas_del_clienteResult" type="tns:Response" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Movimiento_cuentas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Cedula" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cuenta" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Movimiento_cuentasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Movimiento_cuentasResult" type="tns:Response" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Retirar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Cedula" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cuenta" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Monto" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetirarResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetirarResult" type="tns:Response" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Tiene_cuenta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cedula" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Tiene_cuentaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Tiene_cuentaResult" type="tns:Response" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="Consulta_de_balanceSoapIn">
+    <wsdl:part name="parameters" element="tns:Consulta_de_balance" />
+  </wsdl:message>
+  <wsdl:message name="Consulta_de_balanceSoapOut">
+    <wsdl:part name="parameters" element="tns:Consulta_de_balanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="DepositarSoapIn">
+    <wsdl:part name="parameters" element="tns:Depositar" />
+  </wsdl:message>
+  <wsdl:message name="DepositarSoapOut">
+    <wsdl:part name="parameters" element="tns:DepositarResponse" />
+  </wsdl:message>
+  <wsdl:message name="Mostrar_cuentasSoapIn">
+    <wsdl:part name="parameters" element="tns:Mostrar_cuentas" />
+  </wsdl:message>
+  <wsdl:message name="Mostrar_cuentasSoapOut">
+    <wsdl:part name="parameters" element="tns:Mostrar_cuentasResponse" />
+  </wsdl:message>
+  <wsdl:message name="Mostrar_cuentas_del_clienteSoapIn">
+    <wsdl:part name="parameters" element="tns:Mostrar_cuentas_del_cliente" />
+  </wsdl:message>
+  <wsdl:message name="Mostrar_cuentas_del_clienteSoapOut">
+    <wsdl:part name="parameters" element="tns:Mostrar_cuentas_del_clienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="Movimiento_cuentasSoapIn">
+    <wsdl:part name="parameters" element="tns:Movimiento_cuentas" />
+  </wsdl:message>
+  <wsdl:message name="Movimiento_cuentasSoapOut">
+    <wsdl:part name="parameters" element="tns:Movimiento_cuentasResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetirarSoapIn">
+    <wsdl:part name="parameters" element="tns:Retirar" />
+  </wsdl:message>
+  <wsdl:message name="RetirarSoapOut">
+    <wsdl:part name="parameters" element="tns:RetirarResponse" />
+  </wsdl:message>
+  <wsdl:message name="Tiene_cuentaSoapIn">
+    <wsdl:part name="parameters" element="tns:Tiene_cuenta" />
+  </wsdl:message>
+  <wsdl:message name="Tiene_cuentaSoapOut">
+    <wsdl:part name="parameters" element="tns:Tiene_cuentaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebServicesCoreSoap">
+    <wsdl:operation name="Consulta_de_balance">
+      <wsdl:input message="tns:Consulta_de_balanceSoapIn" />
+      <wsdl:output message="tns:Consulta_de_balanceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Depositar">
+      <wsdl:input message="tns:DepositarSoapIn" />
+      <wsdl:output message="tns:DepositarSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Mostrar_cuentas">
+      <wsdl:input message="tns:Mostrar_cuentasSoapIn" />
+      <wsdl:output message="tns:Mostrar_cuentasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Mostrar_cuentas_del_cliente">
+      <wsdl:input message="tns:Mostrar_cuentas_del_clienteSoapIn" />
+      <wsdl:output message="tns:Mostrar_cuentas_del_clienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Movimiento_cuentas">
+      <wsdl:input message="tns:Movimiento_cuentasSoapIn" />
+      <wsdl:output message="tns:Movimiento_cuentasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Retirar">
+      <wsdl:input message="tns:RetirarSoapIn" />
+      <wsdl:output message="tns:RetirarSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Tiene_cuenta">
+      <wsdl:input message="tns:Tiene_cuentaSoapIn" />
+      <wsdl:output message="tns:Tiene_cuentaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebServicesCoreSoap" type="tns:WebServicesCoreSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Consulta_de_balance">
+      <soap:operation soapAction="http://WebServicesCore.core/Consulta_de_balance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Depositar">
+      <soap:operation soapAction="http://WebServicesCore.core/Depositar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Mostrar_cuentas">
+      <soap:operation soapAction="http://WebServicesCore.core/Mostrar_cuentas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Mostrar_cuentas_del_cliente">
+      <soap:operation soapAction="http://WebServicesCore.core/Mostrar_cuentas_del_cliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Movimiento_cuentas">
+      <soap:operation soapAction="http://WebServicesCore.core/Movimiento_cuentas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Retirar">
+      <soap:operation soapAction="http://WebServicesCore.core/Retirar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Tiene_cuenta">
+      <soap:operation soapAction="http://WebServicesCore.core/Tiene_cuenta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebServicesCoreSoap12" type="tns:WebServicesCoreSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Consulta_de_balance">
+      <soap12:operation soapAction="http://WebServicesCore.core/Consulta_de_balance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Depositar">
+      <soap12:operation soapAction="http://WebServicesCore.core/Depositar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Mostrar_cuentas">
+      <soap12:operation soapAction="http://WebServicesCore.core/Mostrar_cuentas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Mostrar_cuentas_del_cliente">
+      <soap12:operation soapAction="http://WebServicesCore.core/Mostrar_cuentas_del_cliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Movimiento_cuentas">
+      <soap12:operation soapAction="http://WebServicesCore.core/Movimiento_cuentas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Retirar">
+      <soap12:operation soapAction="http://WebServicesCore.core/Retirar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Tiene_cuenta">
+      <soap12:operation soapAction="http://WebServicesCore.core/Tiene_cuenta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebServicesCore">
+    <wsdl:port name="WebServicesCoreSoap" binding="tns:WebServicesCoreSoap">
+      <soap:address location="https://coreweb20191008093502.azurewebsites.net/WebServicesCore.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebServicesCoreSoap12" binding="tns:WebServicesCoreSoap12">
+      <soap12:address location="https://coreweb20191008093502.azurewebsites.net/WebServicesCore.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

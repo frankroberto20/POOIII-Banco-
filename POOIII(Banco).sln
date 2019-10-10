@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetBanking", "Internet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaIntegracion", "CapaIntegracion\CapaIntegracion.csproj", "{03FFF620-3E79-4EC4-82DE-8E9DE4061277}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Prueba WinServ", "Prueba WinServ", "{E91558F9-27C6-44FB-B481-DE803A9D099A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationService", "IntegrationService\IntegrationService.csproj", "{F67EDB73-2243-4CDF-B338-34207D049FEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +25,16 @@ Global
 		{03FFF620-3E79-4EC4-82DE-8E9DE4061277}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03FFF620-3E79-4EC4-82DE-8E9DE4061277}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03FFF620-3E79-4EC4-82DE-8E9DE4061277}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F67EDB73-2243-4CDF-B338-34207D049FEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F67EDB73-2243-4CDF-B338-34207D049FEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F67EDB73-2243-4CDF-B338-34207D049FEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F67EDB73-2243-4CDF-B338-34207D049FEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F67EDB73-2243-4CDF-B338-34207D049FEC} = {E91558F9-27C6-44FB-B481-DE803A9D099A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EDA2A549-0114-4F37-80C5-D68F55760FEE}
