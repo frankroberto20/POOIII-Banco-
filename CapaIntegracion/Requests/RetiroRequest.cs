@@ -33,7 +33,7 @@ namespace CapaIntegracion
                     //AGREGUE COLUMNA A MOVIMIENTOS 0(No se ha enviado a core), 1(si se envio)
                     tblMovimientos.Insert(CuentaOrigen, Monto, DateTime.Now, "Retiro", null, 0);
                     balance -= Monto;
-                    tblCuentas.updateBalance(balance - Monto, DateTime.Now, CuentaOrigen);
+                    tblCuentas.updateBalance(balance, DateTime.Now, CuentaOrigen);
                     
                     return true;
                 }
