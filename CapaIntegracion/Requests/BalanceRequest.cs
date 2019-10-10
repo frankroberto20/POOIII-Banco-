@@ -46,7 +46,7 @@ namespace CapaIntegracion
                 }
                 
             }
-            catch (WebException e)
+            catch (Exception e)
             {
                 TblCuentasTableAdapter tblCuentas = new TblCuentasTableAdapter();
                 Logger.Info($"Core no disponible, utilizando base de datos local {e.Message}");

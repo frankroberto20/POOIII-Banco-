@@ -90,7 +90,7 @@ namespace CapaIntegracion
                         return transferenciaResponse;
                     }
                 }
-                catch (WebException e)
+                catch (Exception e)
                 {
                     Logger.Info($"Core no disponible, utilizando base de datos local {e}");
                     bool x = TransferenciaLocal(); //depende del mensaje de error

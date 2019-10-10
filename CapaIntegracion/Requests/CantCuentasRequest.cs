@@ -12,7 +12,6 @@ namespace CapaIntegracion
         protected int ResponseCode;
         public CantCuentasResponse CantidadCuentas()
         {
-
             DataTable Cuentas = new DataTable();
 
             CoreServices.WebServicesCoreSoapClient coreSoap = new CoreServices.WebServicesCoreSoapClient();
@@ -20,7 +19,7 @@ namespace CapaIntegracion
             try
             {
                 Cuentas = Objeto.DataTable;
-                ResponseCode = 00;
+                ResponseCode = 0;
             }
             catch (Exception e)
             {

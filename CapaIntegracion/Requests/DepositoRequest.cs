@@ -67,7 +67,7 @@ namespace CapaIntegracion
                     return depositoResponse;
                 }
             }
-            catch (WebException e)
+            catch (Exception e)
             {
                 Logger.Info($"Core no disponible, utilizando base de datos local {e.Message}");
                 bool x = DepositoLocal(); //depende del mensaje de error
