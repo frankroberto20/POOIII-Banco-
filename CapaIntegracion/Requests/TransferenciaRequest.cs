@@ -33,7 +33,7 @@ namespace CapaIntegracion
             TblMovimientosTableAdapter tblMovimientos = new TblMovimientosTableAdapter();
 
             Logger.Info($"MINICORE: Solicitud transferencia de {Monto} de cuenta {CuentaOrigen} a {CuentaDestino}");
-            if (tblCuentas.GetTitular(CuentaOrigen) == Cedula && tblCuentas.GetTitular(CuentaDestino) == CedulaDestino)  
+            if (Convert.ToBoolean(tblCuentas.exists(CuentaOrigen)) && Convert.ToBoolean(tblCuentas.exists(CuentaDestino)) && tblCuentas.GetTitular(CuentaOrigen) == Cedula && tblCuentas.GetTitular(CuentaDestino) == CedulaDestino)  
             {
                 decimal balance = Convert.ToDecimal(tblCuentas.GetBalance(CuentaOrigen));
                 if (balance >= Monto)
@@ -56,52 +56,54 @@ namespace CapaIntegracion
             }
             else
                 return false;
-
-
         }
 
         public TransferenciaResponse Transferencia()
         {
+            TblCuentasTableAdapter tblCuentas = new TblCuentasTableAdapter();
+            TblMovimientosTableAdapter tblMovimientos = new TblMovimientosTableAdapter();
             if (BancoDestino.ToUpper() == "LOCAL")
             {
                 try
                 {
-                    //webmethod del core
-                    bool x = true; //webmethod
-                    string message = "x"; //webmethod
-                    if (x)
+                    CoreServices.WebServicesCoreSoapClient coreSoap = new CoreServices.WebServicesCoreSoapClient();
+                    var response = coreSoap.Retirar(Cedula, CuentaOrigen.ToString(), Monto); //RETIRO
+
+                    if (response.validar == 0)
                     {
-                        DateTime date = DateTime.Now;
-                        Logger.Info($"Transferencia de {Monto} de la cuenta {CuentaOrigen} a {CuentaDestino} a las {date}, realizada");
-                        TransferenciaResponse transferenciaResponse = new TransferenciaResponse(date, 0, "Transferencia Realizada");
+                        tblMovimientos.Insert(CuentaOrigen, Monto, DateTime.Now, "retiro", CuentaDestino, 1);
+                        tblCuentas.updateBalance(tblCuentas.GetBalance(CuentaOrigen) - Monto, DateTime.Now, CuentaOrigen); //actualizando mi base de datos local
+
+                        coreSoap.Depositar(CedulaDestino, CuentaDestino.ToString(), Monto); //DEPOSITO
+
+                        tblMovimientos.Insert(CuentaDestino, Monto, DateTime.Now, "deposito", CuentaOrigen, 1);
+                        tblCuentas.updateBalance(tblCuentas.GetBalance(CuentaDestino) + Monto, DateTime.Now, CuentaDestino); //actualizando mi base de datos local
+
+                        Logger.Info($"Transferencia realizada de {Monto} de la cuenta {CuentaOrigen} a {CuentaDestino}");
+                        TransferenciaResponse transferenciaResponse = new TransferenciaResponse(DateTime.Now, 0, "Transferencia Realizada");
                         return transferenciaResponse;
                     }
                     else
                     {
-                        DateTime date = DateTime.Now;
-                        Logger.Info($"Transferencia de {Monto} de la cuenta {CuentaOrigen} a {CuentaDestino} a las {date}, no ha podido realizarse. Razon: {message}");
-                        TransferenciaResponse transferenciaResponse = new TransferenciaResponse(date, 1, $"Transferencia no Realizada. Razon: {message}");
+                        Logger.Info($"Transferencia FALLIDA de {Monto} de la cuenta {CuentaOrigen} a {CuentaDestino}");
+                        TransferenciaResponse transferenciaResponse = new TransferenciaResponse(DateTime.Now, 1, $"Transferencia FALLIDA");
                         return transferenciaResponse;
                     }
                 }
                 catch (WebException e)
                 {
                     Logger.Info($"Core no disponible, utilizando base de datos local {e}");
-                    //NuevaTransferencia();
-                    bool x = true; //depende del mensaje de error
-                    string message = "x"; //depende del mensaje de error
+                    bool x = TransferenciaLocal(); //depende del mensaje de error
                     if (x)
                     {
-                        DateTime date = DateTime.Now;
-                        Logger.Info($"Transferencia de {Monto} de la cuenta {CuentaOrigen} a {CuentaDestino} a las {date}, realizada");
-                        TransferenciaResponse transferenciaResponse = new TransferenciaResponse(date, 0, "Transferencia Realizada");
+                        Logger.Info($"Transferencia realizada de {Monto} de la cuenta {CuentaOrigen} a {CuentaDestino}");
+                        TransferenciaResponse transferenciaResponse = new TransferenciaResponse(DateTime.Now, 0, "Transferencia Realizada");
                         return transferenciaResponse;
                     }
                     else
                     {
-                        DateTime date = DateTime.Now;
-                        Logger.Info($"Transferencia de {Monto} de la cuenta {CuentaOrigen} a {CuentaDestino} a las {date}, no ha podido realizarse. Razon: {message}");
-                        TransferenciaResponse transferenciaResponse = new TransferenciaResponse(date, 1, $"Transferencia no Realizada. Razon: {message}");
+                        Logger.Info($"Transferencia FALLIDA de {Monto} de la cuenta {CuentaOrigen} a {CuentaDestino}");
+                        TransferenciaResponse transferenciaResponse = new TransferenciaResponse(DateTime.Now, 1, $"Transferencia FALLIDA");
                         return transferenciaResponse;
                     }
                 }
@@ -109,7 +111,8 @@ namespace CapaIntegracion
             }
             else
             {
-                TransferenciaResponse transferenciaResponse = new TransferenciaResponse(DateTime.Now, 1, $"Transferencia no Realizada.");
+                //METODOS INTERBANCARIOS
+                TransferenciaResponse transferenciaResponse = new TransferenciaResponse(DateTime.Now, 2, $"Transferencia no Realizada.");
                 return transferenciaResponse;
             }
             
