@@ -116,6 +116,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Requests\CantCuentasRequest.cs" />
+    <Compile Include="Response\CantCuentasResponse.cs" />
     <Compile Include="Connected Services\CoreServices\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -126,6 +128,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Requests\DatosCuentasRequest.cs" />
+    <Compile Include="Response\DatosCuentasResponse.cs" />
     <Compile Include="Requests\BalanceRequest.cs" />
     <Compile Include="Requests\DepositoRequest.cs" />
     <Compile Include="Requests\RetiroRequest.cs" />

@@ -48,5 +48,19 @@ namespace CapaIntegracion
             TransferenciaRequest transferenciaRequest = new TransferenciaRequest(cuentaOrigen, cedula, monto, bancoDestino, cuentaDestino, cedulaDestino);
             return transferenciaRequest.Transferencia();
         }
+
+        [WebMethod(MessageName = "DatosCuentasMethod")]
+        public DatosCuentaResponse DatosCuenta(int noCuenta, string cedula)
+        {
+            DatosCuentaRequest datosCuentasRequest = new DatosCuentaRequest(noCuenta, cedula);
+            return datosCuentasRequest.DatosCuenta();
+        }
+
+        [WebMethod(MessageName = "CantidadCuentasMethod")]
+        public CantCuentasResponse CantidadCuentas(string cedula)
+        {
+            CantCuentasRequest cantCuentasRequest = new CantCuentasRequest(cedula);
+            return cantCuentasRequest.CantidadCuentas();
+        }
     }
 }
