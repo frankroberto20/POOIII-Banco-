@@ -30,18 +30,6 @@ namespace InternetBanking
             grdCuentasFavoritas.DataSource = cuentas;
             grdCuentasFavoritas.DataBind();
 
-            #region addCuentaFavorita
-            txtAddCuentaFavorita.Visible = false;
-            lblAddCuentaFavorita.Visible = false;
-            SubmitCuentaFavorita.Visible = false;
-            #endregion
-
-            #region DeleteCuentaFavorita
-            lblDeleteCuentaFavorita.Visible = false;
-            txtDeleteCuentaFavorita.Visible = false;
-            SubmitCuentaDelete.Visible = false;
-            #endregion
-
 
         }
 
@@ -55,12 +43,6 @@ namespace InternetBanking
 
         protected void btnAddCuentafavorita1_Click(object sender, EventArgs e)
         {
-            if (txtAddCuentaFavorita.Visible == false)
-            {
-                txtAddCuentaFavorita.Visible = true;
-                lblAddCuentaFavorita.Visible = true;
-                SubmitCuentaFavorita.Visible = true;
-            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -70,12 +52,7 @@ namespace InternetBanking
 
         protected void btnDeleteCuentaFavorita_Click(object sender, EventArgs e)
         {
-            if (lblDeleteCuentaFavorita.Visible == false)
-            {
-                lblDeleteCuentaFavorita.Visible = true;
-                txtDeleteCuentaFavorita.Visible = true;
-                SubmitCuentaDelete.Visible = true;
-            }
+
         }
     }
 }

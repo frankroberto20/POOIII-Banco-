@@ -14,8 +14,15 @@
 
     <script type="text/javascript">
 
-        function showAgregarCuenta() {
-            document.getElementById('divCuentaFavorita1').style.display = 'block';
+        function ToggleDiv(Flag) {
+            if (Flag == "first") {
+                document.getElementById('dvFirstDiv').style.display = 'block';
+                document.getElementById('dvSecondDiv').style.display = 'none';
+            }
+            else {
+                document.getElementById('dvFirstDiv').style.display = 'none';
+                document.getElementById('dvSecondDiv').style.display = 'block';
+            }
         }
 
     </script>
@@ -49,32 +56,35 @@
             <br />
         </div>
 
-    <asp:Button Id="btnAddCuentafavorita1" Text="Agregar Cuenta" runat="server" OnClick="btnAddCuentafavorita1_Click" />
+    <asp:Button Id="btnAddCuentafavorita1" Text="Agregar Cuenta" runat="server" OnClientClick="ToggleDiv('first');return false;" />
     &nbsp
-    <asp:Button Id="btnDeleteCuentaFavorita" Text="Eliminar Cuenta" runat="server" OnClick="btnDeleteCuentaFavorita_Click" />
+    <asp:Button Id="btnDeleteCuentaFavorita" Text="Eliminar Cuenta" runat="server" OnClientClick="ToggleDiv('second');return false;" />
 
     <div class="border-bottom border-primary" style="padding-top:40px"></div> <!-- this is a line -->
 
-    <div id="divAddCuentaFavorita" >
-        <div id="group_sltCuentaDestino2" class="form-group" style="display: table-row; width:100%; padding-top:40px" >
-			<div style="display:table-cell; padding-top:40px; width:60%">
-				 <asp:Label id="lblAddCuentaFavorita" runat="server" Text="Numero de Cuenta:"/>
-                <br />
-				<asp:TextBox id="txtAddCuentaFavorita" runat="server" class="form-control" placeholder="Numero de cuenta"/>
-                <br />
-                <asp:Button Id="SubmitCuentaFavorita" Text="Submit" runat="server"/>
-			</div>
+    <div id="dvFirstDiv" style="display: none;">
+            <div id="divAddCuentaFavorita" >
+            <div id="group_sltCuentaDestino2" class="form-group" style="display: table-row; width:100%; padding-top:40px" >
+			    <div style="display:table-cell; padding-top:40px; width:60%">
+				     <asp:Label id="lblAddCuentaFavorita" runat="server" Text="Añadir a Cuenta:"/>
+				    <asp:TextBox id="txtAddCuentaFavorita" runat="server" class="form-control" placeholder="Numero de cuenta"/>
+                    <br />
+                    <asp:Button Id="SubmitCuentaFavorita" Text="Submit" runat="server"/>
+			    </div>
+            </div>
         </div>
     </div>
 
-    <div id="divDeleteCuentaFavorita">
-		<div style="display:table-cell; padding-top:40px; width:60%">
-			<asp:Label id="lblDeleteCuentaFavorita" runat="server" Text="Numero de Cuenta:"/>
-            <br />
-			<asp:TextBox id="txtDeleteCuentaFavorita" runat="server" class="form-control" placeholder="Numero de cuenta"/>
-            <br />
-            <asp:Button Id="SubmitCuentaDelete" Text="Submit" runat="server" OnClick="Button1_Click" />
-		</div>        
+    <div id="dvSecondDiv" style="display: none;">
+            <div id="divDeleteCuentaFavorita">
+		    <div style="display:table-cell; padding-top:40px; width:60%">
+			    <asp:Label id="lblDeleteCuentaFavorita" runat="server" Text="Eliminar a Cuenta:"/>
+                <br />
+			    <asp:TextBox id="txtDeleteCuentaFavorita" runat="server" class="form-control" placeholder="Numero de cuenta"/>
+                <br />
+                <asp:Button Id="SubmitCuentaDelete" Text="Submit" runat="server" OnClick="Button1_Click" />
+		    </div>        
+        </div>
     </div>
 
 </div>
