@@ -1,4 +1,5 @@
-﻿using log4net;
+﻿using CapaIntegracion.IntegracionDSTableAdapters;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,9 +66,25 @@ namespace CapaIntegracion
         [WebMethod(MessageName = "ValidarExistenciaMethod")]
         public bool ValidarExistencia(string cedula)
         {
-            CoreServices.WebServicesCoreSoapClient coreSoap = new CoreServices.WebServicesCoreSoapClient();
-            var response = coreSoap.Tiene_cuenta(cedula);
-            return response.tiene_cuenta;
+            //try
+            //{
+            //    CoreServices.WebServicesCoreSoapClient coreSoap = new CoreServices.WebServicesCoreSoapClient();
+            //    var response = coreSoap.Tiene_cuenta(cedula);
+            //    return response.tiene_cuenta;
+
+            //}
+            //catch (Exception e)
+            //{
+            TblCuentasTableAdapter tblCuentas = new TblCuentasTableAdapter();
+
+            if (Convert.ToInt32(tblCuentas.ContadorCuentas(cedula)) != 0)
+            {
+                return true;
+            }
+            else
+                return false;
+            //}
+
         }
     }
 }
