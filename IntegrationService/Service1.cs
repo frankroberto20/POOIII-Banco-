@@ -32,11 +32,11 @@ namespace IntegrationService
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            SqlDataReader reader;
-            SqlConnection sqlConnection = new SqlConnection(@"Data Source = integracion - banco - p3.database.windows.net; Initial Catalog = IntegracionDB; User ID = integracion1; Password = IntegracionP3");
-            sqlConnection.Open();
             try
             {
+                SqlDataReader reader;
+                SqlConnection sqlConnection = new SqlConnection(@"Data Source = integracion - banco - p3.database.windows.net; Initial Catalog = IntegracionDB; User ID = integracion1; Password = IntegracionP3");
+                sqlConnection.Open();
                 string select = "select Cuenta, Monto, Operacion from TblMovimientos where Enviada=0";
                 SqlCommand sqlCommand = new SqlCommand(select, sqlConnection)
                 {
@@ -62,12 +62,12 @@ namespace IntegrationService
                 }
                 else throw new Exception();
                 reader.Close();
+                sqlConnection.Close();
             }
             catch (Exception)
             {
 
             }
-            sqlConnection.Close();
         }
         public class Movimiento
         {
