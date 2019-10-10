@@ -22,8 +22,8 @@ namespace CapaIntegracion.Pruebas
         {
             //Logger.Info("KLK");
 
-            integracion.MainServiceSoapClient integ = new integracion.MainServiceSoapClient();
-            integ.Deposito(1000, 2, 2220);
+            //integracion.MainServiceSoapClient integ = new integracion.MainServiceSoapClient();
+            //integ.Deposito(1000, 2, 2220);
 
             //CoreServices.WebServicesCoreSoapClient coreSoap = new CoreServices.WebServicesCoreSoapClient();
             //var response = coreSoap.Depositar("Cesar Lopez", "11111111111", "1000025", "200");
@@ -31,8 +31,8 @@ namespace CapaIntegracion.Pruebas
             //ClasePrueba.Hello();
 
 
-            //TblClientesTableAdapter tblClientes = new TblClientesTableAdapter();
-            //tblClientes.Insert("Cesar", "Lopez", "8096093146", "40208672472", "M", 19, DateTime.Now);
+            TblCuentasTableAdapter tblClientes = new TblCuentasTableAdapter();
+            tblClientes.Insert(1000035, "corriente", "12345678912", 0, DateTime.Now, DateTime.Now);
 
 
         }

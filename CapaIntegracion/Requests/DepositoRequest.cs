@@ -74,13 +74,13 @@ namespace CapaIntegracion
                 if (x)
                 {
                     Logger.Info($"MINICORE: Deposito realizado de {Monto} de cuenta {CuentaOrigen}");
-                    DepositoResponse depositoResponse = new DepositoResponse(DateTime.Now, 0, "Retiro Realizado");
+                    DepositoResponse depositoResponse = new DepositoResponse(DateTime.Now, 0, "Deposito Realizado");
                     return depositoResponse;
                 }
                 else
                 {
                     Logger.Fatal($"MINI: Deposito FALLIDO de {Monto} de cuenta {CuentaOrigen}");
-                    DepositoResponse depositoResponse = new DepositoResponse(DateTime.Now, 1, $"Retiro FALLIDO"); 
+                    DepositoResponse depositoResponse = new DepositoResponse(DateTime.Now, 1, $"Deposito FALLIDO"); 
                     return depositoResponse;
                 }
             }
