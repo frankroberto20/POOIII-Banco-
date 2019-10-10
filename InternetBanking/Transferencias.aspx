@@ -149,6 +149,8 @@
 							                    <option>Corriente / 5341892</option>
 						                    </select>
                                     </div>
+                                <br />
+                                <a href="CuentasFavoritasConfiguration.aspx">Configurar Cuenta Favorita</a>
                                 </div>
                         </div>
 

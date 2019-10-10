@@ -146,6 +146,7 @@
     <Content Include="Content\register-style.css" />
     <Content Include="Content\Site.css" />
     <Content Include="CrearCuenta.aspx" />
+    <Content Include="CuentasFavoritasConfiguration.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -304,6 +305,13 @@
     </Compile>
     <Compile Include="CrearCuenta.aspx.designer.cs">
       <DependentUpon>CrearCuenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CuentasFavoritasConfiguration.aspx.cs">
+      <DependentUpon>CuentasFavoritasConfiguration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CuentasFavoritasConfiguration.aspx.designer.cs">
+      <DependentUpon>CuentasFavoritasConfiguration.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
