@@ -149,6 +149,8 @@
 							                    <option>Corriente / 5341892</option>
 						                    </select>
                                     </div>
+                                <br />
+                                <a href="CuentasFavoritasConfiguration.aspx">Configurar Cuenta Favorita</a>
                                 </div>
                         </div>
 
@@ -185,7 +187,7 @@
 
                             <div id="group_sltCuentaDestino3" class="form-group" style="display: table-row; width:100%">
 					                <div style="display:table-cell; padding-top:40px; width:60%">
-						                <label for="txtCuentaDestino2">Hasta Cuenta:</label>
+						                <label for="txtCuentaDestino2">Beneficiario:</label>
 						                <asp:TextBox id="TextBox1" runat="server" class="form-control" placeholder="Numero de cuenta"/>
 					                    <br />
 					                </div>
