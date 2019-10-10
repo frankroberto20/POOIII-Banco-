@@ -62,7 +62,7 @@ namespace CapaIntegracion
                 }
                 else
                 {
-                    Logger.Info($"Deposito FALLIDO de {Monto} a la cuenta {CuentaOrigen}, {response.Mensaje}");
+                    Logger.Fatal($"Deposito FALLIDO de {Monto} a la cuenta {CuentaOrigen}, {response.Mensaje}");
                     DepositoResponse depositoResponse = new DepositoResponse(DateTime.Now, response.validar, response.Mensaje);
                     return depositoResponse;
                 }
@@ -79,7 +79,7 @@ namespace CapaIntegracion
                 }
                 else
                 {
-                    Logger.Info($"MINI: Deposito FALLIDO de {Monto} de cuenta {CuentaOrigen}");
+                    Logger.Fatal($"MINI: Deposito FALLIDO de {Monto} de cuenta {CuentaOrigen}");
                     DepositoResponse depositoResponse = new DepositoResponse(DateTime.Now, 1, $"Retiro FALLIDO"); 
                     return depositoResponse;
                 }

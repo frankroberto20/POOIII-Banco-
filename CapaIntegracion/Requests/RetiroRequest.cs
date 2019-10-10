@@ -65,7 +65,7 @@ namespace CapaIntegracion
                 }
                 else
                 {
-                    Logger.Info($"Retiro FALLIDO de {Monto} de la cuenta {CuentaOrigen}. Razon: {response.Mensaje}");
+                    Logger.Fatal($"Retiro FALLIDO de {Monto} de la cuenta {CuentaOrigen}. Razon: {response.Mensaje}");
                     RetiroResponse retiroResponse = new RetiroResponse(DateTime.Now, response.validar, response.Mensaje);
                     return retiroResponse;
                 }
@@ -82,7 +82,7 @@ namespace CapaIntegracion
                 }
                 else
                 {
-                    Logger.Info($"MINICORE: Retiro FALLIDO de {Monto} de cuenta {CuentaOrigen}");
+                    Logger.Fatal($"MINICORE: Retiro FALLIDO de {Monto} de cuenta {CuentaOrigen}");
                     RetiroResponse retiroResponse = new RetiroResponse(DateTime.Now, 1, $"Retiro FALLIDO.");
                     return retiroResponse;
                 }

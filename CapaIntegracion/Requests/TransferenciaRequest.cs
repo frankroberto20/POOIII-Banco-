@@ -31,7 +31,6 @@ namespace CapaIntegracion
         {
             TblCuentasTableAdapter tblCuentas = new TblCuentasTableAdapter();
             TblMovimientosTableAdapter tblMovimientos = new TblMovimientosTableAdapter();
-
             Logger.Info($"MINICORE: Solicitud transferencia de {Monto} de cuenta {CuentaOrigen} a {CuentaDestino}");
             if (Convert.ToBoolean(tblCuentas.exists(CuentaOrigen)) && Convert.ToBoolean(tblCuentas.exists(CuentaDestino)) && tblCuentas.GetTitular(CuentaOrigen) == Cedula && tblCuentas.GetTitular(CuentaDestino) == CedulaDestino)  
             {
@@ -85,7 +84,7 @@ namespace CapaIntegracion
                     }
                     else
                     {
-                        Logger.Info($"Transferencia FALLIDA de {Monto} de la cuenta {CuentaOrigen} a {CuentaDestino}");
+                        Logger.Fatal($"Transferencia FALLIDA de {Monto} de la cuenta {CuentaOrigen} a {CuentaDestino}");
                         TransferenciaResponse transferenciaResponse = new TransferenciaResponse(DateTime.Now, 1, $"Transferencia FALLIDA");
                         return transferenciaResponse;
                     }
@@ -102,7 +101,7 @@ namespace CapaIntegracion
                     }
                     else
                     {
-                        Logger.Info($"Transferencia FALLIDA de {Monto} de la cuenta {CuentaOrigen} a {CuentaDestino}");
+                        Logger.Fatal($"Transferencia FALLIDA de {Monto} de la cuenta {CuentaOrigen} a {CuentaDestino}");
                         TransferenciaResponse transferenciaResponse = new TransferenciaResponse(DateTime.Now, 1, $"Transferencia FALLIDA");
                         return transferenciaResponse;
                     }
